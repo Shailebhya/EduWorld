@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "889741342657",
+    "firebase_url": "https://vithackathon-6787d.firebaseio.com",
+    "project_id": "vithackathon-6787d",
+    "storage_bucket": "vithackathon-6787d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889741342657:android:1d4b90908e55eaacf7e140",
+        "android_client_info": {
+          "package_name": "com.example.fluttervit_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889741342657-8kp0st6g95o98j45dcj8l34n100v666q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fluttervit_app",
+            "certificate_hash": "3231aaa508fc3402e802c14fd6ec6d13e3807cbe"
+          }
+        },
+        {
+          "client_id": "889741342657-p2fhlnod178hg5np50ov34gmvkpa38bq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRKl7QVDfNVwWnHqNZkcnabKP7T8OXs88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889741342657-p2fhlnod178hg5np50ov34gmvkpa38bq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
