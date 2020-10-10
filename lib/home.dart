@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/mainfinal.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'models/user.dart';
 
@@ -208,7 +209,7 @@ checkCategoryPresent()async{
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
-          color:Colors.orange[50],
+          color:Colors.white70, //.withOpacity(0.6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -226,30 +227,41 @@ checkCategoryPresent()async{
   {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    return Scaffold(backgroundColor: Colors.orange[200],
-      body:  SingleChildScrollView(
-        child: Center(child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: height * 0.2 ,bottom: height * 0.05),
-                child: Text('EduWorld', style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: ('DavidLibre'),
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(child: Image.asset("assets/images/logo.png"),
-                height: height * 0.30,
-              ),
-              SizedBox(height: 30,),
-              _buildLoginBtn(),
-            ],
+    return Scaffold(backgroundColor: Colors.transparent,
+      body:  Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue[600], Colors.green[600]],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
+        child: SingleChildScrollView(
+          child: Center(child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: height * 0.2 ,bottom: height * 0.05),
+                  child: Text('EduWorld', style: GoogleFonts.cabin(
+                    letterSpacing: 2, //abel
+                      color: Colors.black.withOpacity(0.75),                      //fontFamily: ('DancingScript'),
+                      fontSize: 45.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Image.asset("assets/images/logo.png"),
+                  height: height * 0.30,
+                ),
+                SizedBox(height: 30,),
+                _buildLoginBtn(),
+              ],
+            ),
+          ),
+          ),
         ),
       )
     );
