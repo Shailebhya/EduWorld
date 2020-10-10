@@ -43,305 +43,318 @@ class _MyHomePageState extends State<MyHomePage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.orange[400],
-        elevation: 0,
-        leading: Container(
-            padding: EdgeInsets.symmetric(vertical: 6),
-            child: Image.asset("assets/images/logo.png")),
-        title: GestureDetector(
-            child: Text(
-              "EduWorld",
-              style: TextStyle(color: Colors.black,
-                fontFamily: ('DavidLibre'),
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,),
-            )),
-        centerTitle: true,
-        actions: <Widget>[
-          GestureDetector(
-            child: IconButton(
-                icon: Image.network(currentUser.photoUrl),
-                onPressed: () {
-                  checkCategoryPresent();
-                  if (hasCat == 0) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => getInfoT()));
-                  } else if (hasCat == 1) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => getInfo()));
-                  }
-                }),
-          )
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.blue[400], Colors.green[400]],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
       ),
-      backgroundColor: Colors.orange[200],
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 5,
-              ),
-              height: 125,
-              child: InkWell(
-                onTap: null,
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: <Widget>[
-                    Container(
-                      height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue[900],
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Hero(
-                        tag: 'a',
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Image.asset(
-                            "assets/images/book.png",
-                            height: 80,
-                            width: 80,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      child: SizedBox(
-                        height: 100,
-                        width: width - 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SubjectsPage())),
-                              child: Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(
-                                  ("Subjects"),
-                                  style: TextStyle(
-                                      fontSize: 30, fontFamily: ("Lobster"), color: Colors.white70),
-                                ),
-                              ),
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 5,
-              ),
-              height: 125,
-              child: InkWell(
-                onTap: null,
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: <Widget>[
-                    Container(
-                      height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue[900],
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Hero(
-                        tag: 'b',
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Image.asset(
-                            "assets/images/location.png",
-                            height: 80,
-                            width: 80,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: SizedBox(
-                        height: 100,
-                        width: width - 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Spacer(),
-                            Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                ("Location"),
-                                style: TextStyle(
-                                    fontSize: 30, fontFamily: ("Lobster"), color: Colors.white70),
-                              ),
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 5,
-              ),
-              height: 125,
-              child: InkWell(
-                onTap: null,
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: <Widget>[
-                    Container(
-                      height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue[900],
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Hero(
-                        tag: 'c',
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Image.asset(
-                            "assets/images/language.png",
-                            height: 80,
-                            width: 80,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      child: SizedBox(
-                        height: 100,
-                        width: width - 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LanguagesPage())),
-                              child: Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(
-                                  ("Language"),
-                                  style: TextStyle(
-                                      fontSize: 30, fontFamily: ("Lobster"), color: Colors.white70),
-                                ),
-                              ),
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(
-            //     horizontal: 20,
-            //     vertical: 5,
-            //   ),
-            //   height: 125,
-            //   child: InkWell(
-            //     onTap: null,
-            //     child: Stack(
-            //       alignment: Alignment.bottomCenter,
-            //       children: <Widget>[
-            //
-            //         Container(
-            //           height: 90,
-            //           decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(10),
-            //             color: Color(0xFF727CAB),
-            //
-            //           ),
-            //         ),
-            //         Positioned(
-            //           top: 0,
-            //           left: 0,
-            //           child: Hero(
-            //             tag: 'd',
-            //             child: Container(
-            //               padding: EdgeInsets.symmetric(horizontal: 20),
-            //
-            //               child: Image.asset("assets/images/teacher.png",
-            //                 height: 80,
-            //                 width: 80,
-            //
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //         Positioned(
-            //           bottom: 0,
-            //           right: 0,
-            //           child: SizedBox(
-            //             height: 100,
-            //             width: width - 200,
-            //             child: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: <Widget>[
-            //                 Spacer(),
-            //                 Padding(
-            //                   padding: const EdgeInsets.symmetric(
-            //                       horizontal: 20),
-            //                   child: Text(
-            //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
-            //
-            //                   ),
-            //                 ),
-            //
-            //                 Spacer(),
-            //
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 100,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: Container(
+              padding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+              child: Image.asset("assets/images/logo.png")),
+          title: GestureDetector(
+              child: Text(
+                "EduWorld",
+                style: TextStyle(color: Colors.white70,
+                  fontFamily: ('DavidLibre'),
+                  fontSize: 35.0,
+                  fontWeight: FontWeight.bold,),
+              )),
+          centerTitle: true,
+          actions: <Widget>[
+            GestureDetector(
+              child: IconButton(
+                  icon: CircleAvatar(backgroundImage: NetworkImage(currentUser.photoUrl),
+                  radius: 30),
+                  onPressed: () {
+                    checkCategoryPresent();
+                    if (hasCat == 0) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => getInfoT()));
+                    } else if (hasCat == 1) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => getInfo()));
+                    }
+                  }),
+            )
           ],
+        ),
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
+                  ),
+                  height: 125,
+                  child: InkWell(
+                    onTap: null,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white70,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Hero(
+                            tag: 'a',
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Image.asset(
+                                "assets/images/book.png",
+                                height: 80,
+                                width: 80,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: SizedBox(
+                            height: 100,
+                            width: width - 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Spacer(),
+                                GestureDetector(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SubjectsPage())),
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text(
+                                      ("Subjects"),
+                                      style: TextStyle(
+                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                    ),
+                                  ),
+                                ),
+                                Spacer(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
+                  ),
+                  height: 125,
+                  child: InkWell(
+                    onTap: null,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white70,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Hero(
+                            tag: 'b',
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Image.asset(
+                                "assets/images/location.png",
+                                height: 80,
+                                width: 80,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: SizedBox(
+                            height: 100,
+                            width: width - 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Spacer(),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(
+                                    ("Location"),
+                                    style: TextStyle(
+                                        fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                  ),
+                                ),
+                                Spacer(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
+                  ),
+                  height: 125,
+                  child: InkWell(
+                    onTap: null,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white70,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Hero(
+                            tag: 'c',
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Image.asset(
+                                "assets/images/language.png",
+                                height: 80,
+                                width: 80,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: SizedBox(
+                            height: 100,
+                            width: width - 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Spacer(),
+                                GestureDetector(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LanguagesPage())),
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text(
+                                      ("Language"),
+                                      style: TextStyle(
+                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                    ),
+                                  ),
+                                ),
+                                Spacer(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                // Container(
+                //   margin: EdgeInsets.symmetric(
+                //     horizontal: 20,
+                //     vertical: 5,
+                //   ),
+                //   height: 125,
+                //   child: InkWell(
+                //     onTap: null,
+                //     child: Stack(
+                //       alignment: Alignment.bottomCenter,
+                //       children: <Widget>[
+                //
+                //         Container(
+                //           height: 90,
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(10),
+                //             color: Color(0xFF727CAB),
+                //
+                //           ),
+                //         ),
+                //         Positioned(
+                //           top: 0,
+                //           left: 0,
+                //           child: Hero(
+                //             tag: 'd',
+                //             child: Container(
+                //               padding: EdgeInsets.symmetric(horizontal: 20),
+                //
+                //               child: Image.asset("assets/images/teacher.png",
+                //                 height: 80,
+                //                 width: 80,
+                //
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //         Positioned(
+                //           bottom: 0,
+                //           right: 0,
+                //           child: SizedBox(
+                //             height: 100,
+                //             width: width - 200,
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: <Widget>[
+                //                 Spacer(),
+                //                 Padding(
+                //                   padding: const EdgeInsets.symmetric(
+                //                       horizontal: 20),
+                //                   child: Text(
+                //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+                //
+                //                   ),
+                //                 ),
+                //
+                //                 Spacer(),
+                //
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
         ),
       ),
     );
