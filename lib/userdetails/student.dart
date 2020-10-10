@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttervit_app/userdetails/editteacher.dart';
 
 import '../home.dart';
+import 'edit_student.dart';
 
 class getInfo extends StatefulWidget {
   @override
@@ -42,7 +43,7 @@ class _getInfoState extends State<getInfo> {
                       color: Colors.white70,
                       fontSize: 20,
                     )),
-                onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> addScreen())),
+                onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> addScreenS())),
               ),
             ),
             RaisedButton(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/teacher.dart';
 
 class addScreenS extends StatefulWidget {
@@ -8,21 +9,17 @@ class addScreenS extends StatefulWidget {
 
 class _addScreenSState extends State<addScreenS> {
 
-  final myController = TextEditingController();
-
-  _printLatestValue() {
-    print("${myController.text}");
+  TextEditingController aboutMe = TextEditingController();
+  submit(){
+usersRef.doc(currentUser.id).update({
+  'bio':aboutMe.text
+});
+aboutMe.clear();
+Navigator.pop(context);
   }
+
   void initState() {
     super.initState();
-
-    myController.addListener(_printLatestValue);
-  }
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +69,7 @@ class _addScreenSState extends State<addScreenS> {
             Expanded(
               child: ListView(
                 children: [
-                  buildkey("About me"),
+                  buildkey("About me",aboutMe),
                   buildkey("Grade"),
                   buildkey("Preferred mode of tutoring"),
                   buildkey("Need help in subjects"),
@@ -82,12 +79,16 @@ class _addScreenSState extends State<addScreenS> {
                 ],
               ),
             ),
+            RaisedButton(
+              child: Text("SAVE THE CHANGES"),
+              onPressed: submit,
+            )
           ],
         ),
       ),
     );
   }
-  Card buildkey(String t) {
+  Card buildkey(String t,[TextEditingController controller]) {
     return Card(
       color: Colors.blue[900],
       child: ListTile(
@@ -95,7 +96,7 @@ class _addScreenSState extends State<addScreenS> {
         title: Text("$t: ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
         // TextField instead of text to take in values
         // controller: myController,
-        subtitle: TextField(controller: myController,),
+        subtitle: TextField(controller: controller),
       ),
     );
   }

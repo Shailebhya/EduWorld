@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/userdetails/teacher.dart';
 
+import '../home.dart';
+
 class addScreen extends StatefulWidget {
   @override
   _addScreenState createState() => _addScreenState();
@@ -8,21 +10,16 @@ class addScreen extends StatefulWidget {
 
 class _addScreenState extends State<addScreen> {
 
-  final myController = TextEditingController();
-
-  _printLatestValue() {
-    print("${myController.text}");
+  TextEditingController aboutMe = TextEditingController();
+  submit(){
+    usersRef.doc(currentUser.id).update({
+      'bio':aboutMe.text
+    });
+    aboutMe.clear();
+    Navigator.pop(context);
   }
   void initState() {
     super.initState();
-
-    myController.addListener(_printLatestValue);
-  }
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,23 +69,27 @@ class _addScreenState extends State<addScreen> {
             Expanded(
               child: ListView(
                 children: [
-                  buildkey("About me"),
+                  buildkey("About me",aboutMe),
                   buildkey("Education"),
                   buildkey("Mode of tutoring"),
                   buildkey("Price"),
                   buildkey("Rating/Subject Knowledge"),
                   buildkey("Timings"),
                   buildkey("Email ID"),
-                  buildkey("Ph number"),
+                  buildkey("Ph number",),
                 ],
               ),
             ),
+            RaisedButton(
+              child: Text("SAVE THE CHANGES"),
+              onPressed: submit,
+            )
           ],
         ),
       ),
     );
   }
-  Card buildkey(String t) {
+  Card buildkey(String t,[TextEditingController controller]) {
     return Card(
       color: Colors.blue[900],
       child: ListTile(
@@ -96,7 +97,7 @@ class _addScreenState extends State<addScreen> {
         title: Text("$t: ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
         // TextField instead of text to take in values
         // controller: myController,
-        subtitle: TextField(controller: myController,),
+        subtitle: TextField(controller: controller),
       ),
     );
   }

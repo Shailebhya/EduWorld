@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/userdetails/editteacher.dart';
+
+import '../home.dart';
 
 class getInfoT extends StatefulWidget {
   @override
@@ -35,7 +38,7 @@ class _getInfoTState extends State<getInfoT> {
                       color: Colors.white70,
                       fontSize: 18,
                     )),
-                onPressed: () => print("Pressed"),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>addScreen())),
               ),
             ),
             RaisedButton(
@@ -59,6 +62,9 @@ class _getInfoTState extends State<getInfoT> {
               children: [
                 Container(
                   decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(currentUser.photoUrl)
+                      ),
                       color: Colors.orange[300],
                       borderRadius: BorderRadius.all(Radius.circular(35.0))),
                   height: 170,

@@ -5,7 +5,7 @@ import 'package:fluttervit_app/mainfinal.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'models/user.dart';
 
-
+final usersRef = FirebaseFirestore.instance.collection('usersRef');
 final GoogleSignIn googleSignIn =GoogleSignIn();
 final timestamp = DateTime.now();
 User currentUser;

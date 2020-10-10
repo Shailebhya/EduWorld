@@ -46,7 +46,8 @@ height = MediaQuery.of(context).size.height;
       appBar: AppBar(
         backgroundColor: Color(0xFF485079),
         elevation: 0,
-        leading: Container(padding: EdgeInsets.symmetric(vertical: 6),child: Image.asset("assets/images/logo.png")),
+        leading: Container(
+            padding: EdgeInsets.symmetric(vertical: 6),child: Image.asset("assets/images/logo.png")),
         title: GestureDetector(child: Text("EduWorld" , style: TextStyle(color: Colors.white),)),
         centerTitle: true,
         actions: <Widget>[
