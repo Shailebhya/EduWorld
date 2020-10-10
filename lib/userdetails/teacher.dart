@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/userdetails/editteacher.dart';
-
 import '../home.dart';
 
 class getInfoT extends StatefulWidget {
@@ -16,7 +15,8 @@ class _getInfoTState extends State<getInfoT> {
       color: Colors.blue[900],
       child: ListTile(
         dense:true,
-        title: Text("$t: $c",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        title: Text("$t:",  style: TextStyle(color: Colors.white70, fontSize: 16)),
+      subtitle: Text("$c",style: TextStyle(color: Colors.white70, fontSize: 18) ),
       ),
     );
   }
@@ -43,7 +43,7 @@ class _getInfoTState extends State<getInfoT> {
             ),
             RaisedButton(
               color: Colors.blue[900],
-              child: Text("Logout",
+              child: Text("Log Out",
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 18,
@@ -67,8 +67,8 @@ class _getInfoTState extends State<getInfoT> {
                       ),
                       color: Colors.orange[300],
                       borderRadius: BorderRadius.all(Radius.circular(35.0))),
-                  height: 170,
-                  width: 150,
+                  height: 130,
+                  width: 140,
                 ),
                 Expanded(
                   child: Container(
@@ -76,10 +76,10 @@ class _getInfoTState extends State<getInfoT> {
                     child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Text("Name",
+                          child: Text(currentUser.displayName,
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 25,
+                                fontSize: 30,
                               )),
                         )),
                   ),
@@ -89,16 +89,16 @@ class _getInfoTState extends State<getInfoT> {
             Expanded(
               child: ListView(
                 children: [
+                  buildkey("About me", currentUser.bio),
+                  buildkey("Email ID", currentUser.email),
+                  buildkey("Education"),
                   buildkey("Age"),
                   buildkey("Location"),
                   buildkey("Gender"),
-                  buildkey("About me",currentUser.bio),
-                  buildkey("Education"),
                   buildkey("Mode of tutoring"),
                   buildkey("Price"),
                   buildkey("Rating/Subject Knowledge"),
                   buildkey("Timings"),
-                  buildkey("Email ID",currentUser.email),
                   buildkey("Ph number"),
                 ],
               ),
@@ -107,7 +107,7 @@ class _getInfoTState extends State<getInfoT> {
         ),
       ),
       appBar: AppBar(
-        title: Text("User Details: ",
+        title: Text("User Profile ",
             style: TextStyle(
               color: Colors.black,
               fontSize: 22,

@@ -3,7 +3,8 @@ import 'package:fluttervit_app/userdetails/teacher.dart';
 
 import '../home.dart';
 
-class addScreen extends StatefulWidget {
+class addScreen extends StatefulWidget
+{
   @override
   _addScreenState createState() => _addScreenState();
 }
