@@ -207,7 +207,7 @@ checkCategoryPresent()async{
       width: width * .6,
       child: RaisedButton(
 
-          onPressed: null,
+          onPressed: login,
           elevation: 5.0,
           // onPressed: () {
           //   FirebaseAuth.instance
@@ -221,16 +221,12 @@ checkCategoryPresent()async{
             borderRadius: BorderRadius.circular(30.0),
           ),
           color: Color(0xFF727CAB),
-          child: RaisedButton(
-            color: Colors.transparent,
-            onPressed: login,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container( width: 40,child: Image.asset("assets/images/google.png")),
-                Text("Sign In with Google" , style: TextStyle(color: Colors.white),),
-              ],),
-          )
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container( width: 40,child: Image.asset("assets/images/google.png")),
+              Text("Sign In with Google" , style: TextStyle(color: Colors.white),),
+            ],)
       ),
     );
   }
