@@ -26,7 +26,6 @@ class _LanguagesPageState extends State<LanguagesPage> {
               backgroundColor: Colors.transparent,
               elevation: 0.0,
             ),
-            drawer: Drawer(),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -101,9 +101,11 @@ checkCategoryPresent()async{
   });}
 
 }
+//Home screen
   Widget buildAuthScreen() {
     checkCategoryPresent();
    if(hasCat==false){
+     //Home page
      return Scaffold(
        key: _scaffoldKey,
        backgroundColor: Colors.orange[200],
@@ -119,13 +121,11 @@ checkCategoryPresent()async{
                    height: height * 0.20,
                  ),
                  Container(
-                   //margin: EdgeInsets.only(
-                   //    top: height * 0.2, bottom: height * 0.05),
                    child: Text(
-                     'About Us',
+                     'About Us:',
                      style: TextStyle(
                        color: Colors.black,
-                       fontFamily: 'OpenSans',
+                       fontFamily: ('OpenSans'),
                        fontSize: 35.0,
                        fontWeight: FontWeight.bold,
                      ),
@@ -153,7 +153,7 @@ checkCategoryPresent()async{
                    child: Text(
                      'Continue As :',
                      style: TextStyle(
-                       color: Colors.white,
+                       color: Colors.black,
                        fontFamily: 'OpenSans',
                        fontSize: 15.0,
                      ),
@@ -193,28 +193,27 @@ checkCategoryPresent()async{
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Color(0xFF727CAB),
+        color: Colors.orange[50],
         child: Container(child: Text("$intro" , style: TextStyle(color: Colors.white ,fontSize: 18 ),)),
       ),
     );
   }
+
+  //Sign in with Google button
   Widget _buildLoginBtn() {
     return Container(
-
-      width: width * .6,
+      width: width* .7,
       child: RaisedButton(
-
           onPressed: login,
-          elevation: 5.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
-          color:Colors.white,
+          color:Colors.orange[50],
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container( width: 40,child: Image.asset("assets/images/google.png")),
-              Text("Sign In with Google" , style: TextStyle(color: Colors.black),),
+              Container(width: 50,child: Image.asset("assets/images/google.png")),
+              Text("Sign In with Google", style: TextStyle(color: Colors.black, fontSize: 18),),
             ],)
       ),
     );
@@ -222,26 +221,23 @@ checkCategoryPresent()async{
 
 
   double width, height;
-
-  Scaffold buildUnAuthScreen() {
+  //Beginning page
+  Scaffold buildUnAuthScreen()
+  {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    return Scaffold(backgroundColor: Color(0xFF485079),
+    return Scaffold(backgroundColor: Colors.orange[200],
       body:  SingleChildScrollView(
         child: Center(child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-
             children: [
-
               Container(
                 margin: EdgeInsets.only(top: height * 0.2 ,bottom: height * 0.05),
-                child: Text(
-                  'EduWorld',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'OpenSans',
-                    fontSize: 35.0,
+                child: Text('EduWorld', style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: ('DavidLibre'),
+                    fontSize: 45.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -251,8 +247,10 @@ checkCategoryPresent()async{
               ),
               SizedBox(height: 30,),
               _buildLoginBtn(),
-            ],),
-        ),),
+            ],
+          ),
+        ),
+        ),
       )
     );
   }

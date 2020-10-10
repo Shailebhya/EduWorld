@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttervit_app/userdetails/teacher.dart';
-
 import '../home.dart';
 
 class addScreen extends StatefulWidget

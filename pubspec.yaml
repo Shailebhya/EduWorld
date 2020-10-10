@@ -59,19 +59,33 @@ flutter:
     - assets/images/logo.png
     - assets/images/teacher.png
 
+  fonts:
+    - family: DancingScript
+      fonts:
+      - asset: assets/fonts/DancingScript-VariableFont_wght.ttf
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
+    - family: DavidLibre
+      fonts:
+      - asset: assets/fonts/DavidLibre-Medium.ttf
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+    - family: Lobster
+      fonts:
+      - asset: assets/fonts/Lobster-Regular.ttf
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
+    - family: OpenSans
+      fonts:
+      - asset: assets/fonts/OpenSansCondensed-LightItalic.ttf
+
+    - family: Pacifico
+      fonts:
+      - asset: assets/fonts/Pacifico-Regular.ttf
+
+    - family: YanoneKaffeesatz
+      fonts:
+      - asset: assets/fonts/YanoneKaffeesatz-VariableFont_wght.ttf
+
+
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

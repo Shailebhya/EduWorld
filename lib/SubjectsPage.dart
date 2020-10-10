@@ -18,7 +18,6 @@ class _SubjectsPageState extends State<SubjectsPage> {
         child: Container(
           color: Colors.blue[300],
           child: Scaffold(
-            drawer: Drawer(),
             appBar: AppBar(
               elevation: 0,
               backgroundColor: Colors.transparent,

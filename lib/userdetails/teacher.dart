@@ -118,7 +118,9 @@ class _getInfoTState extends State<getInfoT> {
             )),
         backgroundColor: Colors.orange[300],
         actions: [
-          Icon(Icons.home, size: 35, color: Colors.blue[900],),
+          IconButton(icon: Icon(Icons.home, size: 35, color: Colors.blue[900],),
+          onPressed:()=> print("Put in MyHome Page here"),
+          ),
         ],
       ),
     );

@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Educattt',
+      title: 'EduWorld',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
@@ -24,12 +24,10 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasError) {
             return Text("Something went wrong");
           }
-
           // Once complete, show your application
           if (snapshot.connectionState == ConnectionState.done) {
             return Home();
           }
-
           // Otherwise, show something whilst waiting for initialization to complete
           return CircularProgressIndicator();
         },
