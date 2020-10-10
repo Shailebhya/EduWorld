@@ -20,7 +20,8 @@ class _getInfoState extends State<getInfo> {
       color: Colors.blue[900],
       child: ListTile(
         dense:true,
-        title: Text("$t: $c",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        title: Text("$t: ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        subtitle: Text("$c",style: TextStyle(color: Colors.white70, fontSize: 18) ),
       ),
     );
   }
@@ -92,15 +93,15 @@ class _getInfoState extends State<getInfo> {
             Expanded(
               child: ListView(
                 children: [
+                  buildkey("About me",currentUser.bio),
+                  buildkey("Email ID",currentUser.email),
                   buildkey("Age"),
                   buildkey("Location"),
                   buildkey("Gender"),
-                  buildkey("About me",currentUser.bio),
                   buildkey("Grade"),
                   buildkey("Preferred mode of tutoring"),
                   buildkey("Need help in subjects"),
                   buildkey("Timings"),
-                  buildkey("Email ID",currentUser.email),
                   buildkey("Ph number"),
                 ],
               ),
@@ -117,7 +118,9 @@ class _getInfoState extends State<getInfo> {
                 ))),
         backgroundColor: Colors.orange[300],
         actions: [
-          Icon(Icons.person, size: 35, color: Colors.blue[900],),
+          IconButton(icon: Icon(Icons.home, size: 35, color: Colors.blue[900],),
+            onPressed:()=> print("Put in MyHome Page here"),
+          ),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/mainfinal.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'models/user.dart';
 
@@ -9,7 +10,8 @@ final usersRef = FirebaseFirestore.instance.collection('usersRef');
 final GoogleSignIn googleSignIn =GoogleSignIn();
 final timestamp = DateTime.now();
 User currentUser;
-class Home extends StatefulWidget {
+class Home extends StatefulWidget
+{
   @override
   _HomeState createState() => _HomeState();
 }
@@ -29,7 +31,9 @@ class _HomeState extends State<Home> {
       onError: (err){
       print('Error signing in : $err');
       }
-    );//Reauthenticate when app is opened!!
+    );
+
+    //Re-authenticate when the app is opened!
     googleSignIn.signInSilently(suppressErrors: false)
     .then((account){
       handleSignIn(account);
@@ -55,18 +59,15 @@ class _HomeState extends State<Home> {
     }
   }
 createUserInFirestore()async {
-  //check if user exists in users collection in database according to their id
+  //Check if user already exists in users collection in database according to their ID
   final GoogleSignInAccount user = googleSignIn.currentUser;
    DocumentSnapshot doc =await usersRef.doc(user.id).get();
 
     if(!doc.exists){
-      // if the ussr doesnt exist then we want to tske them to create account page
-    //
-    // final username =await Navigator.push(context, MaterialPageRoute(builder: (context)=> CreateAccount()));
+      // If the user doesn't exist then we take them to create an account page
+     //Get username from create account and use it to make new user document in users collection
 
-  //get username from create account , use it to make new user doc.
-    //in user collection
-  usersRef.doc(user.id).set({
+      usersRef.doc(user.id).set({
     "id": user.id,
     "photoUrl":user.photoUrl,
     "email": user.email,
@@ -87,6 +88,7 @@ createUserInFirestore()async {
   logout(){
     googleSignIn.signOut();
   }
+
 checkCategoryPresent()async{
   DocumentSnapshot doc = await usersRef.doc(currentUser.id).get();
   var cat =doc["category"];
@@ -100,16 +102,18 @@ checkCategoryPresent()async{
   });}
 
 }
+//Home screen
   Widget buildAuthScreen() {
     checkCategoryPresent();
-   if(hasCat==false){return Scaffold(
+   if(hasCat==false){
+     //Home page
+     return Scaffold(
        key: _scaffoldKey,
-       backgroundColor: Color(0xFF485079),
+       backgroundColor: Colors.orange[200],
        body: SingleChildScrollView(
          child: Center(
-           child: Container(
+           child: Expanded(
              child: Column(
-
                children: [
                  Container(
                    margin: EdgeInsets.only(
@@ -118,13 +122,11 @@ checkCategoryPresent()async{
                    height: height * 0.20,
                  ),
                  Container(
-                   //margin: EdgeInsets.only(
-                   //    top: height * 0.2, bottom: height * 0.05),
                    child: Text(
-                     'About Us',
+                     'About Us:',
                      style: TextStyle(
-                       color: Colors.grey[300],
-                       fontFamily: 'OpenSans',
+                       color: Colors.black,
+                       fontFamily: ('OpenSans'),
                        fontSize: 35.0,
                        fontWeight: FontWeight.bold,
                      ),
@@ -134,12 +136,11 @@ checkCategoryPresent()async{
                    margin: EdgeInsets.symmetric(
                        vertical: height * 0.02, horizontal: width * 0.05),
                    child: Text(
-                     'Edutech company which aims to provided perfect solution to all the teachers in need and help student to find a mentor easily.',
+                     'We aim to provided the perfect solution to all the teachers and students on the lookout for their right educational match and help them connect together to build a brighter future for the world! ',
                      style: TextStyle(
                        color: Colors.grey[500],
                        fontFamily: 'OpenSans',
                        fontSize: 20.0,
-
                      ),
                      textAlign: TextAlign.center,
                    ),
@@ -153,10 +154,9 @@ checkCategoryPresent()async{
                    child: Text(
                      'Continue As :',
                      style: TextStyle(
-                       color: Colors.white,
+                       color: Colors.black,
                        fontFamily: 'OpenSans',
                        fontSize: 15.0,
-
                      ),
                    ),
                  ),
@@ -169,7 +169,7 @@ checkCategoryPresent()async{
                  ),
                  _buildButton("Student"),
                  RaisedButton(
-                   child: Text("Log OUT"),
+                   child: Text("LOG OUT"),
                    onPressed: logout,
                  )
                ],
@@ -179,13 +179,14 @@ checkCategoryPresent()async{
        ));}
    else return MyHomePage();
   }
-  Widget _buildButton(String intro) {
-    return Container(
 
+  Widget _buildButton(String intro)
+  {
+    return Container(
       width: width * .4,
       child: RaisedButton(
-
-        onPressed: (){
+        onPressed: ()
+        {
           usersRef.doc(currentUser.id).update({'category':intro});
           Navigator.push(context, MaterialPageRoute(builder: (context)=> MyHomePage()));
         },
@@ -193,110 +194,78 @@ checkCategoryPresent()async{
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Color(0xFF727CAB),
-        child:
-
-        Container(child: Text("$intro" , style: TextStyle(color: Colors.white ,fontSize: 18 ),)),
-
+        color: Colors.orange[50],
+        child: Container(child: Text("$intro" , style: TextStyle(color: Colors.white ,fontSize: 18 ),)),
       ),
     );
   }
+
+  //Sign in with Google button
   Widget _buildLoginBtn() {
     return Container(
-
-      width: width * .6,
+      width: width* .7,
       child: RaisedButton(
-
           onPressed: login,
-          elevation: 5.0,
-          // onPressed: () {
-          //   FirebaseAuth.instance
-          //       .signInWithEmailAndPassword(email: _email, password: _password)
-          //       .then((onValue) {})
-          //       .catchError((error) {
-          //     debugPrint("Erro is " + error);
-          //   });
-          // },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
-          color:Colors.white,
+          color:Colors.white70, //.withOpacity(0.6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container( width: 40,child: Image.asset("assets/images/google.png")),
-              Text("Sign In with Google" , style: TextStyle(color: Colors.black),),
+              Container(width: 50,child: Image.asset("assets/images/google.png")),
+              Text("Sign In with Google", style: TextStyle(color: Colors.black, fontSize: 18),),
             ],)
       ),
     );
   }
 
 
-  double width , height;
-
-  Scaffold buildUnAuthScreen() {
+  double width, height;
+  //Beginning page
+  Scaffold buildUnAuthScreen()
+  {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    return Scaffold(backgroundColor: Color(0xFF485079),
-      body:  SingleChildScrollView(
-        child: Center(child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-
-            children: [
-
-              Container(
-                margin: EdgeInsets.only(top: height * 0.2 ,bottom: height * 0.05),
-                child: Text(
-                  'EduWorld',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'OpenSans',
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
+    return Scaffold(backgroundColor: Colors.transparent,
+      body:  Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue[600], Colors.green[600]],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Center(child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: height * 0.2 ,bottom: height * 0.05),
+                  child: Text('EduWorld', style: GoogleFonts.cabin(
+                    letterSpacing: 2, //abel
+                      color: Colors.black.withOpacity(0.75),                      //fontFamily: ('DancingScript'),
+                      fontSize: 45.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              Container(child: Image.asset("assets/images/logo.png"),
-                height: height * 0.30,
-              ),
-              SizedBox(height: 30,),
-              _buildLoginBtn(),
-            ],),
-        ),),
+                Container(
+                  child: Image.asset("assets/images/logo.png"),
+                  height: height * 0.30,
+                ),
+                SizedBox(height: 30,),
+                _buildLoginBtn(),
+              ],
+            ),
+          ),
+          ),
+        ),
       )
     );
   }
-  // Scaffold buildUnAuthScreen() {
-  //   return Scaffold(
-  //       backgroundColor: Colors.black,
-  //       body: Center(
-  //         child: Column(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             GestureDetector(
-  //               child: Container(
-  //
-  //                 child:  Center(
-  //                   child: Text("JoinUs",style: TextStyle(
-  //                       fontStyle: FontStyle.italic,
-  //                       fontSize: 30
-  //                   ),),
-  //                 ),
-  //                 width: 200,
-  //                 height: 60,
-  //                 decoration: BoxDecoration(
-  //                   color: Colors.white,
-  //                   borderRadius: BorderRadius.circular(10),
-  //                 ),
-  //               ),
-  //               onDoubleTap: login,
-  //             )
-  //           ],
-  //         ),
-  //       )
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {

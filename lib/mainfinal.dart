@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/LanguagesPage.dart';
-import 'package:fluttervit_app/Locations.dart';
 import 'package:fluttervit_app/SubjectsPage.dart';
 import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
@@ -72,11 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: <Widget>[
             GestureDetector(
               child: IconButton(
-                  iconSize: 50,
-                  icon: CircleAvatar(
-                    child: ClipOval(
-                      child: Image.network(currentUser.photoUrl),
-                    ),),
+                  icon: CircleAvatar(backgroundImage: NetworkImage(currentUser.photoUrl),
+                  radius: 30),
                   onPressed: () {
                     checkCategoryPresent();
                     if (hasCat == 0) {
@@ -91,120 +87,114 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         backgroundColor: Colors.transparent,
-        body:  SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              SizedBox(height: 30,),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 5,
-                ),
-                height: 125,
-                child: InkWell(
-                  onTap: null,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: <Widget>[
-                      Container(
-                        height: 90,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white70,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
+                  ),
+                  height: 125,
+                  child: InkWell(
+                    onTap: null,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white70,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Hero(
-                          tag: 'a',
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Image.asset(
-                              "assets/images/book.png",
-                              height: 80,
-                              width: 80,
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Hero(
+                            tag: 'a',
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Image.asset(
+                                "assets/images/book.png",
+                                height: 80,
+                                width: 80,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: SizedBox(
-                          height: 100,
-                          width: width - 200,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Spacer(),
-                              GestureDetector(
-                                onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SubjectsPage())),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                                  child: Text(
-                                    ("Subjects"),
-                                    style: TextStyle(
-                                        fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: SizedBox(
+                            height: 100,
+                            width: width - 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Spacer(),
+                                GestureDetector(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SubjectsPage())),
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text(
+                                      ("Subjects"),
+                                      style: TextStyle(
+                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Spacer(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 5,
-                ),
-                height: 125,
-                child: InkWell(
-                  onTap: null,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: <Widget>[
-                      Container(
-                        height: 90,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white70,
-                        ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Hero(
-                          tag: 'b',
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Image.asset(
-                              "assets/images/location.png",
-                              height: 80,
-                              width: 80,
+                                Spacer(),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: ()=>Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => places())),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
+                  ),
+                  height: 125,
+                  child: InkWell(
+                    onTap: null,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white70,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Hero(
+                            tag: 'b',
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Image.asset(
+                                "assets/images/location.png",
+                                height: 80,
+                                width: 80,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
                           child: SizedBox(
                             height: 100,
                             width: width - 200,
@@ -218,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Text(
                                     ("Location"),
                                     style: TextStyle(
-                                        fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
+                                        fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
                                   ),
                                 ),
                                 Spacer(),
@@ -226,148 +216,147 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 5,
-                ),
-                height: 125,
-                child: InkWell(
-                  onTap: null,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: <Widget>[
-                      Container(
-                        height: 90,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white70,
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 5,
+                  ),
+                  height: 125,
+                  child: InkWell(
+                    onTap: null,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white70,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Hero(
-                          tag: 'c',
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Image.asset(
-                              "assets/images/language.png",
-                              height: 80,
-                              width: 80,
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Hero(
+                            tag: 'c',
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Image.asset(
+                                "assets/images/language.png",
+                                height: 80,
+                                width: 80,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: SizedBox(
-                          height: 100,
-                          width: width - 200,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Spacer(),
-                              GestureDetector(
-                                onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LanguagesPage())),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                                  child: Text(
-                                    ("Language"),
-                                    style: TextStyle(
-                                        fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: SizedBox(
+                            height: 100,
+                            width: width - 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Spacer(),
+                                GestureDetector(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LanguagesPage())),
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text(
+                                      ("Language"),
+                                      style: TextStyle(
+                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Spacer(),
-                            ],
+                                Spacer(),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              // Container(
-              //   margin: EdgeInsets.symmetric(
-              //     horizontal: 20,
-              //     vertical: 5,
-              //   ),
-              //   height: 125,
-              //   child: InkWell(
-              //     onTap: null,
-              //     child: Stack(
-              //       alignment: Alignment.bottomCenter,
-              //       children: <Widget>[
-              //
-              //         Container(
-              //           height: 90,
-              //           decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(10),
-              //             color: Color(0xFF727CAB),
-              //
-              //           ),
-              //         ),
-              //         Positioned(
-              //           top: 0,
-              //           left: 0,
-              //           child: Hero(
-              //             tag: 'd',
-              //             child: Container(
-              //               padding: EdgeInsets.symmetric(horizontal: 20),
-              //
-              //               child: Image.asset("assets/images/teacher.png",
-              //                 height: 80,
-              //                 width: 80,
-              //
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //         Positioned(
-              //           bottom: 0,
-              //           right: 0,
-              //           child: SizedBox(
-              //             height: 100,
-              //             width: width - 200,
-              //             child: Column(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: <Widget>[
-              //                 Spacer(),
-              //                 Padding(
-              //                   padding: const EdgeInsets.symmetric(
-              //                       horizontal: 20),
-              //                   child: Text(
-              //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
-              //
-              //                   ),
-              //                 ),
-              //
-              //                 Spacer(),
-              //
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-            ],
+                // Container(
+                //   margin: EdgeInsets.symmetric(
+                //     horizontal: 20,
+                //     vertical: 5,
+                //   ),
+                //   height: 125,
+                //   child: InkWell(
+                //     onTap: null,
+                //     child: Stack(
+                //       alignment: Alignment.bottomCenter,
+                //       children: <Widget>[
+                //
+                //         Container(
+                //           height: 90,
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(10),
+                //             color: Color(0xFF727CAB),
+                //
+                //           ),
+                //         ),
+                //         Positioned(
+                //           top: 0,
+                //           left: 0,
+                //           child: Hero(
+                //             tag: 'd',
+                //             child: Container(
+                //               padding: EdgeInsets.symmetric(horizontal: 20),
+                //
+                //               child: Image.asset("assets/images/teacher.png",
+                //                 height: 80,
+                //                 width: 80,
+                //
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //         Positioned(
+                //           bottom: 0,
+                //           right: 0,
+                //           child: SizedBox(
+                //             height: 100,
+                //             width: width - 200,
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: <Widget>[
+                //                 Spacer(),
+                //                 Padding(
+                //                   padding: const EdgeInsets.symmetric(
+                //                       horizontal: 20),
+                //                   child: Text(
+                //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+                //
+                //                   ),
+                //                 ),
+                //
+                //                 Spacer(),
+                //
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
           ),
         ),
       ),
-
     );
   }
 }
