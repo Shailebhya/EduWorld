@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/LanguagesPage.dart';
 import 'package:fluttervit_app/SubjectsPage.dart';
 import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/tinku%20last%20page/description.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
+import 'package:fluttervit_app/userdetails/teacher.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -12,7 +14,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final usersRef = FirebaseFirestore.instance.collection('usersRef');
+
+  num hasCat;
   double width , height;
+  @override
+  void initState() {
+    checkCategoryPresent();
+    // TODO: implement initState
+    super.initState();
+  }
+  checkCategoryPresent()async{
+    DocumentSnapshot doc = await usersRef.doc(currentUser.id).get();
+    var cat =doc["category"];
+    if(cat=="Teacher"){
+      setState(() {
+        hasCat=0;
+      });
+    }
+    else if(cat=="Student"){setState(() {
+      hasCat=1;
+    });}
+
+  }
   @override
   Widget build(BuildContext context) {
 width = MediaQuery.of(context).size.width;
@@ -30,7 +54,15 @@ height = MediaQuery.of(context).size.height;
                           child: IconButton(
                 
                 icon: Image.network(currentUser.photoUrl),
-                onPressed:()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> getInfo())),
+                onPressed:(){
+                  checkCategoryPresent();
+                  if(hasCat==0)
+                 { Navigator.push(context, MaterialPageRoute(builder: (context)=> getInfoT()));}
+                  else if(hasCat==1){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> getInfo()));
+                  }
+
+                }
               ),
             )
           ],

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class getInfo extends StatefulWidget {
+class getInfoT extends StatefulWidget {
   @override
-  _getInfoState createState() => _getInfoState();
+  _getInfoTState createState() => _getInfoTState();
 }
 
-class _getInfoState extends State<getInfo> {
+class _getInfoTState extends State<getInfoT> {
 
   Card buildkey(String t)
   {
