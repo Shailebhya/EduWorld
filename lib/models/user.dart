@@ -7,6 +7,7 @@ class User {
   final String photoUrl;
   final String displayName;
   final String bio;
+  final String category;
 
 
   User({
@@ -14,7 +15,8 @@ class User {
     this.email,
     this.photoUrl,
     this.displayName,
-    this.bio
+    this.bio,
+    this.category
   });
 factory User.fromDocument(DocumentSnapshot doc){
   return User(
@@ -22,8 +24,8 @@ factory User.fromDocument(DocumentSnapshot doc){
     email: doc['email'],
     photoUrl: doc['photoUrl'],
     displayName: doc['displayName'],
-    bio: doc['bio']
-
+    bio: doc['bio'],
+    category : doc['category']
 
   );
 }

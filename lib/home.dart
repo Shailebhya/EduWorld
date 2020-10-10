@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/main_page.dart';
+import 'package:fluttervit_app/mainfinal.dart';
 import 'dart:io';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'create_account.dart';
@@ -27,11 +29,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _scaffoldKey=GlobalKey<ScaffoldState>();
   bool isAuth = false;
+  bool hasCat=false;
   final usersRef = FirebaseFirestore.instance.collection('usersRef');
 
   @override
   void initState(){
     super.initState();
+     checkCategoryPresent();
     googleSignIn.onCurrentUserChanged.listen((account) {
      handleSignIn(account);
     },
@@ -80,7 +84,8 @@ createUserInFirestore()async {
     "email": user.email,
     'displayName': user.displayName,
     "bio":"",
-    "timestamp":timestamp
+    "timestamp":timestamp,
+    "category": null
   });
   }
     currentUser = User.fromDocument(doc);
@@ -94,56 +99,216 @@ createUserInFirestore()async {
   logout(){
     googleSignIn.signOut();
   }
+checkCategoryPresent()async{
+  DocumentSnapshot doc = await usersRef.doc(currentUser.id).get();
+  var cat =doc["category"];
+  if(cat!=null){
+    setState(() {
+      hasCat=true;
+    });
+  }
 
+}
   Widget buildAuthScreen() {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("WELCOME TO THE HOME PAGE"),
-            RaisedButton(
-              child: Text("logOUT"),
-              onPressed: logout,
-            )
-          ],
+   if(hasCat==false){return Scaffold(
+       key: _scaffoldKey,
+       backgroundColor: Color(0xFF485079),
+       body: SingleChildScrollView(
+         child: Center(
+           child: Container(
+             child: Column(
+
+               children: [
+                 Container(
+                   margin: EdgeInsets.only(
+                       top: height * 0.1, bottom: height * 0.05),
+                   child: Image.asset("assets/images/logo.png"),
+                   height: height * 0.20,
+                 ),
+                 Container(
+                   //margin: EdgeInsets.only(
+                   //    top: height * 0.2, bottom: height * 0.05),
+                   child: Text(
+                     'About Us',
+                     style: TextStyle(
+                       color: Colors.grey[300],
+                       fontFamily: 'OpenSans',
+                       fontSize: 35.0,
+                       fontWeight: FontWeight.bold,
+                     ),
+                   ),
+                 ),
+                 Container(
+                   margin: EdgeInsets.symmetric(
+                       vertical: height * 0.02, horizontal: width * 0.05),
+                   child: Text(
+                     'Edutech company which aims to provied perfect solution to all the teachers in need and help student to find a mentor easily.',
+                     style: TextStyle(
+                       color: Colors.grey[500],
+                       fontFamily: 'OpenSans',
+                       fontSize: 20.0,
+
+                     ),
+                     textAlign: TextAlign.center,
+                   ),
+                 ),
+                 SizedBox(
+                   height: 30,
+                 ),
+                 Container(
+                   //margin: EdgeInsets.only(
+                   //    top: height * 0.2, bottom: height * 0.05),
+                   child: Text(
+                     'Continue As :',
+                     style: TextStyle(
+                       color: Colors.white,
+                       fontFamily: 'OpenSans',
+                       fontSize: 15.0,
+
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   height: 10,
+                 ),
+                 _buildButton("Teacher"),
+                 SizedBox(
+                   height: 5,
+                 ),
+                 _buildButton("Student"),
+                 RaisedButton(
+                   child: Text("logOUT"),
+                   onPressed: logout,
+                 )
+               ],
+             ),
+           ),
+         ),
+       ));}
+   else return MyHomePage();
+  }
+  Widget _buildButton(String intro) {
+    return Container(
+
+      width: width * .4,
+      child: RaisedButton(
+
+        onPressed: (){
+          usersRef.doc(currentUser.id).update({'category':intro});
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> MyHomePage()));
+        },
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
         ),
+        color: Color(0xFF727CAB),
+        child:
+
+        Container(child: Text("$intro" , style: TextStyle(color: Colors.white ,fontSize: 18 ),)),
+
+      ),
+    );
+  }
+  Widget _buildLoginBtn() {
+    return Container(
+
+      width: width * .6,
+      child: RaisedButton(
+
+          onPressed: null,
+          elevation: 5.0,
+          // onPressed: () {
+          //   FirebaseAuth.instance
+          //       .signInWithEmailAndPassword(email: _email, password: _password)
+          //       .then((onValue) {})
+          //       .catchError((error) {
+          //     debugPrint("Erro is " + error);
+          //   });
+          // },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          color: Color(0xFF727CAB),
+          child: RaisedButton(
+            color: Colors.transparent,
+            onPressed: login,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container( width: 40,child: Image.asset("assets/images/google.png")),
+                Text("Sign In with Google" , style: TextStyle(color: Colors.white),),
+              ],),
+          )
       ),
     );
   }
 
-  Scaffold buildUnAuthScreen() {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              child: Container(
 
-                child:  Center(
-                  child: Text("JoinUs",style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 30
-                  ),),
-                ),
-                width: 200,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+  double width , height;
+
+  Scaffold buildUnAuthScreen() {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+    return Scaffold(backgroundColor: Color(0xFF485079),
+      body:  SingleChildScrollView(
+        child: Center(child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            children: [
+
+              Container(
+                margin: EdgeInsets.only(top: height * 0.2 ,bottom: height * 0.05),
+                child: Text(
+                  'EduWorld',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'OpenSans',
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              onDoubleTap: login,
-            )
-          ],
-        ),
+              Container(child: Image.asset("assets/images/logo.png"),
+                height: height * 0.30,
+              ),
+              SizedBox(height: 30,),
+              _buildLoginBtn(),
+            ],),
+        ),),
       )
     );
   }
-
+  // Scaffold buildUnAuthScreen() {
+  //   return Scaffold(
+  //       backgroundColor: Colors.black,
+  //       body: Center(
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             GestureDetector(
+  //               child: Container(
+  //
+  //                 child:  Center(
+  //                   child: Text("JoinUs",style: TextStyle(
+  //                       fontStyle: FontStyle.italic,
+  //                       fontSize: 30
+  //                   ),),
+  //                 ),
+  //                 width: 200,
+  //                 height: 60,
+  //                 decoration: BoxDecoration(
+  //                   color: Colors.white,
+  //                   borderRadius: BorderRadius.circular(10),
+  //                 ),
+  //               ),
+  //               onDoubleTap: login,
+  //             )
+  //           ],
+  //         ),
+  //       )
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
