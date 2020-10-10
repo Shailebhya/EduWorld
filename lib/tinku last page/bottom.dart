@@ -98,6 +98,150 @@ buildList(AsyncSnapshot<QuerySnapshot> snapshot) {
     },
   );
 }
+Widget NewBottomModel (context){
+  var rating = 3.0;
+
+// SfRangeValues _values = const SfRangeValues(4.0, 6.0);
+// SfRangeValues _values1 = SfRangeValues(DateTime(2000, 01, 01, 07, 00, 00), DateTime(2000, 01, 01, 17, 00, 00));
+  RangeValues _currentRangeValues = const RangeValues(4, 6);
+  RangeValues _currentRangeValuesForTime = const RangeValues(8, 12);
+  return Scaffold(
+    body: Container(
+      color: Colors.white,
+      height: MediaQuery.of(context).size.width * 1.5,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Qualifications',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+            MyStatefulWidget(),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Price',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+            RangeSlider(
+              values: _currentRangeValues,
+              min: 0,
+              max: 8,
+              divisions: 4,
+              labels: RangeLabels(
+                _currentRangeValues.start.round().toString(),
+                _currentRangeValues.end.round().toString(),
+              ),
+              onChanged: (RangeValues values) {
+                setState(() {
+                  _currentRangeValues = values;
+                });
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("\$0"),
+                  Text("\$2"),
+                  Text("\$4"),
+                  Text("\$6"),
+                  Text("\$8"),
+                ],
+              ),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Timing',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+            RangeSlider(
+              values: _currentRangeValuesForTime,
+              min: 8,
+              max: 19,
+              divisions: 10,
+              labels: RangeLabels(
+                _currentRangeValuesForTime.start.round().toString(),
+                _currentRangeValuesForTime.end.round().toString(),
+              ),
+              onChanged: (RangeValues values) {
+                setState(() {
+                  _currentRangeValuesForTime = values;
+                });
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("8 am"),
+                  Text("12 pm"),
+                  Text("7pm"),
+                ],
+              ),
+            ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Ratings',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal:12.0, vertical: 8),
+              child: SmoothStarRating(
+                rating: rating,
+                isReadOnly: false,
+                size: 35,
+                filledIconData: Icons.star,
+                halfFilledIconData: Icons.star_half,
+                defaultIconData: Icons.star_border,
+                starCount: 5,
+                allowHalfRating: true,
+                spacing: 5.0,
+                onRated: (value) {
+                  print("rating value -> $value");
+                  // print("rating value dd -> ${value.truncate()}");
+                },
+              ),
+            ),
+            RaisedButton(child: Text("Confirm"),
+              onPressed: (){
+                setState(() {
+                  snap=usersRef.where('subjects' ,arrayContains: widget.type).where('price' ,isEqualTo: _currentRangeValues.toString()).snapshots();
+                  print(_currentRangeValues);
+                });
+              },)
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
 void bottomSheet(BuildContext context) {
     showModalBottomSheet( enableDrag: true,
@@ -108,7 +252,7 @@ void bottomSheet(BuildContext context) {
         builder: (ctx) {
           return ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-              child: NewBottomModel());
+              child: NewBottomModel(context));
         });
   }
 
@@ -518,157 +662,4 @@ void bottomSheet(BuildContext context) {
 }
 
 
-class NewBottomModel extends StatefulWidget {
-  String type;
-  NewBottomModel({this.type});
-  @override
-  _NewBottomModelState createState() => _NewBottomModelState();
-}
 
-class _NewBottomModelState extends State<NewBottomModel> {
-  var rating = 3.0;
-
-// SfRangeValues _values = const SfRangeValues(4.0, 6.0);
-// SfRangeValues _values1 = SfRangeValues(DateTime(2000, 01, 01, 07, 00, 00), DateTime(2000, 01, 01, 17, 00, 00));
-  RangeValues _currentRangeValues = const RangeValues(4, 6);
-  RangeValues _currentRangeValuesForTime = const RangeValues(8, 12);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        height: MediaQuery.of(context).size.width * 1.5,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Qualifications',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ),
-              MyStatefulWidget(),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Price',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ),
-              RangeSlider(
-                values: _currentRangeValues,
-                min: 0,
-                max: 8,
-                divisions: 4,
-                labels: RangeLabels(
-                  _currentRangeValues.start.round().toString(),
-                  _currentRangeValues.end.round().toString(),
-                ),
-                onChanged: (RangeValues values) {
-                  setState(() {
-                    _currentRangeValues = values;
-                  });
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("\$0"),
-                    Text("\$2"),
-                    Text("\$4"),
-                    Text("\$6"),
-                    Text("\$8"),
-                  ],
-                ),
-              ),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Timing',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ),
-              RangeSlider(
-                values: _currentRangeValuesForTime,
-                min: 8,
-                max: 19,
-                divisions: 10,
-                labels: RangeLabels(
-                  _currentRangeValuesForTime.start.round().toString(),
-                  _currentRangeValuesForTime.end.round().toString(),
-                ),
-                onChanged: (RangeValues values) {
-                  setState(() {
-                    _currentRangeValuesForTime = values;
-                  });
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("8 am"),
-                    Text("12 pm"),
-                    Text("7pm"),
-                  ],
-                ),
-              ),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Ratings',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal:12.0, vertical: 8),
-                child: SmoothStarRating(
-                  rating: rating,
-                  isReadOnly: false,
-                  size: 35,
-                  filledIconData: Icons.star,
-                  halfFilledIconData: Icons.star_half,
-                  defaultIconData: Icons.star_border,
-                  starCount: 5,
-                  allowHalfRating: true,
-                  spacing: 5.0,
-                  onRated: (value) {
-                    print("rating value -> $value");
-                    // print("rating value dd -> ${value.truncate()}");
-                  },
-                ),
-              ),
-              RaisedButton(child: Text("Confirm"),
-              onPressed: (){
-                setState(() {
-                  snap=usersRef.where('subjects' ,arrayContains: widget.type).where('price' ,isEqualTo: _currentRangeValues.toString()).snapshots();
-                  print(_currentRangeValues);
-                });
-              },)
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

@@ -9,6 +9,8 @@ class addScreenS extends StatefulWidget {
 
 class _addScreenSState extends State<addScreenS> {
 
+  RangeValues _currentRangeValues = const RangeValues(4, 6);
+  RangeValues _currentRangeValuesForTime = const RangeValues(8, 12);
   TextEditingController aboutMe = TextEditingController();
   submit(){
     usersRef.doc(currentUser.id).update({
@@ -72,7 +74,34 @@ class _addScreenSState extends State<addScreenS> {
               buildkey("Grade"),
               buildkey("Preferred mode of tutoring"),
               buildkey("Need help in subjects"),
-              buildkey("Timings"),
+              Container(
+                height: 80,
+                width: 270,
+                decoration: BoxDecoration(
+                    color: Colors.blue[900]
+                ),
+                child: Column(
+                  children: [
+                    Text("Price",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+                    RangeSlider(
+                      values: _currentRangeValues,
+                      min: 0,
+                      max: 8,
+                      divisions: 4,
+                      labels: RangeLabels(
+                        _currentRangeValues.start.round().toString(),
+                        _currentRangeValues.end.round().toString(),
+                      ),
+                      onChanged: (RangeValues values) {
+                        setState(() {
+                          _currentRangeValues = values;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+
+              ),
               buildkey("Email ID"),
               buildkey("Ph number"),
               Container(
@@ -104,7 +133,7 @@ class _addScreenSState extends State<addScreenS> {
         title: Text("$t: ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
         // TextField instead of text to take in values
         // controller: myController,
-        subtitle: TextField(controller: controller),
+
       ),
     );
   }
