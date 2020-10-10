@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttervit_app/LanguagesPage.dart';
 import 'package:fluttervit_app/SubjectsPage.dart';
 import 'package:fluttervit_app/home.dart';
-import 'package:fluttervit_app/tinku%20last%20page/description.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
 import 'package:fluttervit_app/userdetails/teacher.dart';
 
