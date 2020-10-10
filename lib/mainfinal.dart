@@ -6,6 +6,7 @@ import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
 import 'package:fluttervit_app/userdetails/teacher.dart';
 
+
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -37,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  }
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;

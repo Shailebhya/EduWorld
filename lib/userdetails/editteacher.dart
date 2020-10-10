@@ -26,64 +26,74 @@ class _addScreenState extends State<addScreen> {
         backgroundColor: Colors.amber[200],
       ),
       backgroundColor: Colors.orange[200],
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.orange[300],
-                      borderRadius: BorderRadius.all(Radius.circular(35.0))),
-                  height: 170,
-                  width: 150,
-                ),
-                Expanded(
-                  child: Container(
-                    height: 150,
-                    child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text("Name",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25,
-                              )),
-                        )),
-                  ),
-                )
-              ],
-            ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text("Age: \n"
-                    "Location: \n"
-                    "Gender: \n", style: TextStyle(color: Colors.black, fontSize: 20)),
-              ),
-            ),
-            Expanded(
-              child: ListView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  buildkey("About me",aboutMe),
-                  buildkey("Education"),
-                  buildkey("Mode of tutoring"),
-                  buildkey("Price"),
-                  buildkey("Rating/Subject Knowledge"),
-                  buildkey("Timings"),
-                  buildkey("Email ID"),
-                  buildkey("Ph number",),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.orange[300],
+                        borderRadius: BorderRadius.all(Radius.circular(35.0))),
+                    height: 170,
+                    width: 150,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 150,
+                      child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text("Name",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                )),
+                          )),
+                    ),
+                  )
                 ],
               ),
-            ),
-            RaisedButton(
-              child: Text("SAVE THE CHANGES"),
-              onPressed: submit,
-            )
-          ],
+              Container(
+                width: double.infinity,
+                height: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text("Age: \n"
+                      "Location: \n"
+                      "Gender: \n", style: TextStyle(color: Colors.black, fontSize: 20)),
+                ),
+              ),
+
+              buildkey("About me",aboutMe),
+              buildkey("Education"),
+              buildkey("Mode of tutoring"),
+              buildkey("Price"),
+              buildkey("Rating/Subject Knowledge"),
+              buildkey("Timings"),
+              buildkey("Email ID"),
+              buildkey("Ph number",),
+
+
+              Container(
+
+                width: 100,
+                child: RaisedButton(
+
+                    onPressed: submit,
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    color: Colors.white,
+                    child: Text("Save")
+                ),
+              ),
+
+            ],
+          ),
         ),
       ),
     );
