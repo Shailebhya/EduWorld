@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/LanguagesPage.dart';
+import 'package:fluttervit_app/Locations.dart';
 import 'package:fluttervit_app/SubjectsPage.dart';
 import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
@@ -199,24 +200,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       Positioned(
                         bottom: 0,
                         right: 0,
-                        child: SizedBox(
-                          height: 100,
-                          width: width - 200,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Spacer(),
-                              Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(
-                                  ("Location"),
-                                  style: TextStyle(
-                                      fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
+                        child: GestureDetector(
+                          onTap: ()=>Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => places())),
+                          child: SizedBox(
+                            height: 100,
+                            width: width - 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Spacer(),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(
+                                    ("Location"),
+                                    style: TextStyle(
+                                        fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                              ),
-                              Spacer(),
-                            ],
+                                Spacer(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
