@@ -22,6 +22,8 @@ environment:
 
 dependencies:
   google_sign_in:
+#  syncfusion_flutter_sliders:
+#  smooth_star_rating:
   firebase_core:
   cloud_firestore:
   google_fonts:

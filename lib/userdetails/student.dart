@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/userdetails/editteacher.dart';
+
+import '../home.dart';
 
 class getInfo extends StatefulWidget {
   @override
@@ -6,6 +9,10 @@ class getInfo extends StatefulWidget {
 }
 
 class _getInfoState extends State<getInfo> {
+
+  logout(){
+    googleSignIn.signOut();
+  }
 
   Card buildkey(String t)
   {
@@ -34,7 +41,7 @@ class _getInfoState extends State<getInfo> {
                       color: Colors.white70,
                       fontSize: 20,
                     )),
-                onPressed: () => print("Pressed"),
+                onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> addScreen())),
               ),
             ),
             RaisedButton(
@@ -44,7 +51,7 @@ class _getInfoState extends State<getInfo> {
                     color: Colors.white70,
                     fontSize: 20,
                   )),
-              onPressed: () => print("Pressed"),
+              onPressed:logout,
             )
           ],
         ),
@@ -58,6 +65,9 @@ class _getInfoState extends State<getInfo> {
               children: [
                 Container(
                   decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(currentUser.photoUrl)
+                    ),
                       color: Colors.orange[300],
                       borderRadius: BorderRadius.all(Radius.circular(35.0))),
                   height: 170,
@@ -69,7 +79,7 @@ class _getInfoState extends State<getInfo> {
                     child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Text("Name",
+                          child: Text(currentUser.displayName,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,

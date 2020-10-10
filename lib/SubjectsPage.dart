@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/tinku%20last%20page/description.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SubjectsPage extends StatefulWidget {

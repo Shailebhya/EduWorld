@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/LanguagesPage.dart';
+import 'package:fluttervit_app/SubjectsPage.dart';
+import 'package:fluttervit_app/home.dart';
+import 'package:fluttervit_app/tinku%20last%20page/description.dart';
+import 'package:fluttervit_app/userdetails/student.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -24,8 +29,8 @@ height = MediaQuery.of(context).size.height;
             GestureDetector(
                           child: IconButton(
                 
-                icon: Image.network("https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"),
-                onPressed: null,
+                icon: Image.network(currentUser.photoUrl),
+                onPressed:()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> getInfo())),
               ),
             )
           ],
@@ -81,12 +86,15 @@ height = MediaQuery.of(context).size.height;
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20),
-                      child: Text(
-                        ("Subjects"),style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
-                        
+                    GestureDetector(
+                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> SubjectsPage())),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20),
+                        child: Text(
+                          ("Subjects"),style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+
+                        ),
                       ),
                     ),
                    
@@ -151,7 +159,7 @@ height = MediaQuery.of(context).size.height;
                           horizontal: 20),
                       child: Text(
                         ("Location"),style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
-                        
+
                       ),
                     ),
                    
@@ -211,12 +219,15 @@ height = MediaQuery.of(context).size.height;
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20),
-                      child: Text(
-                        ("Language"),style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
-                        
+                    GestureDetector(
+                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>LanguagesPage())),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20),
+                        child: Text(
+                          ("Language"),style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+
+                        ),
                       ),
                     ),
                    
