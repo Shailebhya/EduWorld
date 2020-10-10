@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:fluttervit_app/userdetails/teacher.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import '../home.dart';
 
-class addScreen extends StatefulWidget
-{
+class addScreen extends StatefulWidget {
   @override
   _addScreenState createState() => _addScreenState();
 }
 
 class _addScreenState extends State<addScreen> {
+  var rating = 3.0;
+
+  RangeValues _currentRangeValues = const RangeValues(4, 6);
+  RangeValues _currentRangeValuesForTime = const RangeValues(8, 12);
 
   TextEditingController aboutMe = TextEditingController();
   submit(){
@@ -70,8 +75,81 @@ class _addScreenState extends State<addScreen> {
               buildkey("About me",aboutMe),
               buildkey("Education"),
               buildkey("Mode of tutoring"),
-              buildkey("Price"),
-              buildkey("Rating/Subject Knowledge"),
+              Container(
+                height: 80,
+                width: 340,
+                decoration: BoxDecoration(
+                    color: Colors.blue[900]
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Price",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+                    ),
+                    RangeSlider(
+                      values: _currentRangeValues,
+                      min: 0,
+                      max: 8,
+                      divisions: 4,
+                      labels: RangeLabels(
+                        _currentRangeValues.start.round().toString(),
+                        _currentRangeValues.end.round().toString(),
+                      ),
+                      onChanged: (RangeValues values) {
+                        setState(() {
+                          _currentRangeValues = values;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+
+              ),
+
+              //           Card(
+              //   color: Colors.blue[900],
+              //   child: ListTile(
+              //     dense: true,
+              //     title: Text("Price",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+              //     // TextField instead of text to take in values
+              //     // controller: myController,
+
+              //   ),
+
+              // ),
+              Container(
+                height: 80,
+                width: 270,
+                decoration: BoxDecoration(
+                    color: Colors.blue[900]
+                ),
+                child: Column(
+                  children: [
+                    Text("Ratings",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal:12.0, vertical: 8),
+                      child: SmoothStarRating(
+                        rating: rating,
+                        isReadOnly: false,
+                        size: 35,
+                        filledIconData: Icons.star,
+                        halfFilledIconData: Icons.star_half,
+                        defaultIconData: Icons.star_border,
+                        starCount: 5,
+                        allowHalfRating: true,
+                        spacing: 5.0,
+                        onRated: (value) {
+                          print("rating value -> $value");
+                          // print("rating value dd -> ${value.truncate()}");
+                        },
+                      ),
+                    )
+                  ],
+                ),
+
+              ),
+
               buildkey("Timings"),
               buildkey("Email ID"),
               buildkey("Ph number",),
