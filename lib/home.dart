@@ -257,7 +257,7 @@ checkCategoryPresent()async{
                   ),
                 ),
               ),
-              Container(child: Image.asset("assets/images/logo.png"),
+              Container(child:Image(image: NetworkImage("https://drive.google.com/file/d/15bJtjJ8u63UYeZFyySalzD6cVaTXodIK/view?usp=sharing"),),
                 height: height * 0.30,
               ),
               SizedBox(height: 30,),

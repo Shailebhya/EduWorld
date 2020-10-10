@@ -47,7 +47,7 @@ height = MediaQuery.of(context).size.height;
         backgroundColor: Color(0xFF485079),
         elevation: 0,
         leading: Container(
-            padding: EdgeInsets.symmetric(vertical: 6),child: Image.asset("assets/images/logo.png")),
+            padding: EdgeInsets.symmetric(vertical: 6),child: Image(image: NetworkImage("https://drive.google.com/file/d/1IvKyTvzjDT_iiiKp3dfINygSJOgqYy50/view?usp=sharing"),)),
         title: GestureDetector(child: Text("EduWorld" , style: TextStyle(color: Colors.white),)),
         centerTitle: true,
         actions: <Widget>[
@@ -101,7 +101,7 @@ height = MediaQuery.of(context).size.height;
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   
-                  child: Image.asset("assets/images/book.png",
+                  child: Image(image:NetworkImage("https://drive.google.com/file/d/1GNYNTLnC6_cT-mJ_cedAptj5QWtH9aOM/view?usp=sharing"),
                     height: 80,
                     width: 80,
                     
@@ -169,10 +169,10 @@ height = MediaQuery.of(context).size.height;
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   
-                  child: Image.asset("assets/images/location.png",
+                  child: Image.network("https://drive.google.com/file/d/1tlSVXGu0ctjjvzCvEWlb4BfnqUIxAcHj/view?usp=sharing",
                     height: 80,
                     width: 80,
-                    
+
                   ),
                 ),
               ),
@@ -274,71 +274,71 @@ height = MediaQuery.of(context).size.height;
         ),
       ),
     ),
-    Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 5,
-      ),
-      height: 125,
-      child: InkWell(
-        onTap: null,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: <Widget>[
-            
-            Container(
-              height: 90,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0xFF727CAB),
-                
-              ),
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Hero(
-                tag: 'd',
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  
-                  child: Image.asset("assets/images/teacher.png",
-                    height: 80,
-                    width: 80,
-                    
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: SizedBox(
-                height: 100,
-                width: width - 200,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20),
-                      child: Text(
-                        ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
-                        
-                      ),
-                    ),
-                   
-                    Spacer(),
-                
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
+    // Container(
+    //   margin: EdgeInsets.symmetric(
+    //     horizontal: 20,
+    //     vertical: 5,
+    //   ),
+    //   height: 125,
+    //   child: InkWell(
+    //     onTap: null,
+    //     child: Stack(
+    //       alignment: Alignment.bottomCenter,
+    //       children: <Widget>[
+    //
+    //         Container(
+    //           height: 90,
+    //           decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(10),
+    //             color: Color(0xFF727CAB),
+    //
+    //           ),
+    //         ),
+    //         Positioned(
+    //           top: 0,
+    //           left: 0,
+    //           child: Hero(
+    //             tag: 'd',
+    //             child: Container(
+    //               padding: EdgeInsets.symmetric(horizontal: 20),
+    //
+    //               child: Image(image:NetworkImage("https://drive.google.com/file/d/1cD3i5iM4ajXnFT1rhv7KJAFeSmYgwz0k/view?usp=sharing"),
+    //                 height: 80,
+    //                 width: 80,
+    //
+    //               ),
+    //             ),
+    //           ),
+    //         ),
+    //         Positioned(
+    //           bottom: 0,
+    //           right: 0,
+    //           child: SizedBox(
+    //             height: 100,
+    //             width: width - 200,
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               children: <Widget>[
+    //                 Spacer(),
+    //                 Padding(
+    //                   padding: const EdgeInsets.symmetric(
+    //                       horizontal: 20),
+    //                   child: Text(
+    //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+    //
+    //                   ),
+    //                 ),
+    //
+    //                 Spacer(),
+    //
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // ),
           ],
         ),
       ),
