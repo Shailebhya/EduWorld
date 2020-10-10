@@ -1,24 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttervit_app/main_page.dart';
 import 'package:fluttervit_app/mainfinal.dart';
-import 'dart:io';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'create_account.dart';
 import 'models/user.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 final GoogleSignIn googleSignIn =GoogleSignIn();
-// final StorageReference storageRef= FirebaseStorage.instance.ref();
-// final usersRef = Firestore.instance.collection('users');
-// final postsRef = Firestore.instance.collection('posts');
-// final commentsRef=Firestore.instance.collection('comments');
-// final followersRef= Firestore.instance.collection('followers');
-// final followingRef= Firestore.instance.collection('following');
-// final timelineRef= Firestore.instance.collection('timeline');
-// final activityFeedRef= Firestore.instance.collection('feed');
 final timestamp = DateTime.now();
 User currentUser;
 class Home extends StatefulWidget {
@@ -35,7 +23,6 @@ class _HomeState extends State<Home> {
   @override
   void initState(){
     super.initState();
-     checkCategoryPresent();
     googleSignIn.onCurrentUserChanged.listen((account) {
      handleSignIn(account);
     },
@@ -50,6 +37,7 @@ class _HomeState extends State<Home> {
     }).catchError((err){
       print('Error signing in : $err');
     });
+    checkCategoryPresent();
   }
   handleSignIn(GoogleSignInAccount account)async{
     if(account!= null) {
@@ -106,10 +94,14 @@ checkCategoryPresent()async{
     setState(() {
       hasCat=true;
     });
-  }
+    }
+  else{setState(() {
+    hasCat=false;
+  });}
 
 }
   Widget buildAuthScreen() {
+    checkCategoryPresent();
    if(hasCat==false){return Scaffold(
        key: _scaffoldKey,
        backgroundColor: Color(0xFF485079),

@@ -12,6 +12,7 @@ class _getInfoState extends State<getInfo> {
 
   logout(){
     googleSignIn.signOut();
+    Navigator.pop(context);
   }
 
   Card buildkey(String t)
