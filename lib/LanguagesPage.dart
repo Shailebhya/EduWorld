@@ -54,7 +54,7 @@ class _LanguagesPageState extends State<LanguagesPage> {
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(15),
                                 gradient: LinearGradient(
-                                  colors: [Colors.purple[300], Colors.blue[300]],
+                                  colors: [Colors.blue[300], Colors.pink[300]],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -110,7 +110,7 @@ class _LanguagesPageState extends State<LanguagesPage> {
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(15),
                                 gradient: LinearGradient(
-                                  colors: [Colors.purple[300], Colors.blue[300]],
+                                  colors: [Colors.blue[300], Colors.purple[300]],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -166,7 +166,7 @@ class _LanguagesPageState extends State<LanguagesPage> {
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(15),
                                 gradient: LinearGradient(
-                                  colors: [Colors.purple[300], Colors.blue[300]],
+                                  colors: [Colors.blue[300], Colors.purple[300]],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),

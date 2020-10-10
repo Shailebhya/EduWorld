@@ -8,6 +8,13 @@ class User {
   final String displayName;
   final String bio;
   final String category;
+  final String gender;
+  final String age;
+  final String grade;
+  final String mode;
+  final String timing;
+  final String price;
+  final String qualification;
 
 
   User({
@@ -16,7 +23,14 @@ class User {
     this.photoUrl,
     this.displayName,
     this.bio,
-    this.category
+    this.category,
+    this.gender,
+    this.age,
+    this.grade,
+    this.mode,
+    this.timing,
+    this.price,
+    this.qualification,
   });
 factory User.fromDocument(DocumentSnapshot doc){
   return User(

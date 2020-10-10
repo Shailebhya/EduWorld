@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/userdetails/editteacher.dart';
 import '../home.dart';
@@ -11,6 +12,10 @@ class _getInfoTState extends State<getInfoT> {
   logout(){
     googleSignIn.signOut();
     Navigator.pop(context);
+  }
+  DocumentSnapshot doc ;
+  getDetails()async{
+    doc = await usersRef.doc(currentUser.id).get();
   }
 
   Card buildkey(String t,[String c])
@@ -27,6 +32,7 @@ class _getInfoTState extends State<getInfoT> {
   @override
 
   Widget build(BuildContext context) {
+    getDetails();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -114,9 +120,7 @@ class _getInfoTState extends State<getInfoT> {
                     buildkey("Gender"),
                     buildkey("Mode of tutoring"),
                     buildkey("Price"),
-                    buildkey("Rating/Subject Knowledge"),
                     buildkey("Timings"),
-                    buildkey("Ph number"),
                   ],
                 ),
               )

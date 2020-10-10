@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../home.dart';
 import 'edit_student.dart';
@@ -8,12 +9,14 @@ class getInfo extends StatefulWidget {
 }
 
 class _getInfoState extends State<getInfo> {
-
+  DocumentSnapshot doc ;
+  getDetails()async{
+   doc = await usersRef.doc(currentUser.id).get();
+  }
   logout(){
     googleSignIn.signOut();
     Navigator.pop(context);
   }
-
   Card buildkey(String t,[String c])
   {
     return Card(
@@ -28,6 +31,7 @@ class _getInfoState extends State<getInfo> {
   @override
 
   Widget build(BuildContext context) {
+    getDetails();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -115,7 +119,6 @@ class _getInfoState extends State<getInfo> {
                     buildkey("Preferred mode of tutoring"),
                     buildkey("Need help in subjects"),
                     buildkey("Timings"),
-                    buildkey("Ph number"),
                   ],
                 ),
               )
