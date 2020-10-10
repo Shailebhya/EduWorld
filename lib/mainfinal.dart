@@ -6,7 +6,6 @@ import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
 import 'package:fluttervit_app/userdetails/teacher.dart';
 
-
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -17,6 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   num hasCat;
   double width, height;
+
   @override
   void initState() {
     checkCategoryPresent();
@@ -38,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  }
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -47,18 +46,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange[400],
+        elevation: 0,
         leading: Container(
             padding: EdgeInsets.symmetric(vertical: 6),
             child: Image.asset("assets/images/logo.png")),
-        title: Text(
-          "EduWorld",
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: ('DavidLibre'),
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: GestureDetector(
+            child: Text(
+              "EduWorld",
+              style: TextStyle(color: Colors.black,
+                fontFamily: ('DavidLibre'),
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,),
+            )),
         centerTitle: true,
         actions: <Widget>[
           GestureDetector(
@@ -132,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       builder: (context) => SubjectsPage())),
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
+                                const EdgeInsets.symmetric(horizontal: 20),
                                 child: Text(
                                   ("Subjects"),
                                   style: TextStyle(
@@ -194,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Spacer(),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              const EdgeInsets.symmetric(horizontal: 20),
                               child: Text(
                                 ("Location"),
                                 style: TextStyle(
@@ -260,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       builder: (context) => LanguagesPage())),
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
+                                const EdgeInsets.symmetric(horizontal: 20),
                                 child: Text(
                                   ("Language"),
                                   style: TextStyle(
@@ -277,67 +276,71 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 5,
-              ),
-              height: 125,
-              child: InkWell(
-                onTap: null,
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: <Widget>[
-                    Container(
-                      height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue[900],
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Hero(
-                        tag: 'd',
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Image.asset(
-                            "assets/images/teacher.png",
-                            height: 80,
-                            width: 80,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: SizedBox(
-                        height: 100,
-                        width: width - 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                ("Mode Of Teaching"),
-                                style: TextStyle(
-                                    fontSize: 30, fontFamily: ("Lobster"), color: Colors.white70),
-                              ),
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Container(
+            //   margin: EdgeInsets.symmetric(
+            //     horizontal: 20,
+            //     vertical: 5,
+            //   ),
+            //   height: 125,
+            //   child: InkWell(
+            //     onTap: null,
+            //     child: Stack(
+            //       alignment: Alignment.bottomCenter,
+            //       children: <Widget>[
+            //
+            //         Container(
+            //           height: 90,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(10),
+            //             color: Color(0xFF727CAB),
+            //
+            //           ),
+            //         ),
+            //         Positioned(
+            //           top: 0,
+            //           left: 0,
+            //           child: Hero(
+            //             tag: 'd',
+            //             child: Container(
+            //               padding: EdgeInsets.symmetric(horizontal: 20),
+            //
+            //               child: Image.asset("assets/images/teacher.png",
+            //                 height: 80,
+            //                 width: 80,
+            //
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         Positioned(
+            //           bottom: 0,
+            //           right: 0,
+            //           child: SizedBox(
+            //             height: 100,
+            //             width: width - 200,
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: <Widget>[
+            //                 Spacer(),
+            //                 Padding(
+            //                   padding: const EdgeInsets.symmetric(
+            //                       horizontal: 20),
+            //                   child: Text(
+            //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+            //
+            //                   ),
+            //                 ),
+            //
+            //                 Spacer(),
+            //
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
