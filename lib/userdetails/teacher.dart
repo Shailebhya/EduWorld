@@ -8,6 +8,10 @@ class getInfoT extends StatefulWidget {
 }
 
 class _getInfoTState extends State<getInfoT> {
+  logout(){
+    googleSignIn.signOut();
+    Navigator.pop(context);
+  }
 
   Card buildkey(String t,[String c])
   {
@@ -48,7 +52,7 @@ class _getInfoTState extends State<getInfoT> {
                     color: Colors.white70,
                     fontSize: 18,
                   )),
-              onPressed: () => print("Pressed"),
+              onPressed: logout,
             )
           ],
         ),

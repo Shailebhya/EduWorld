@@ -209,12 +209,12 @@ checkCategoryPresent()async{
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
-          color: Color(0xFF727CAB),
+          color:Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container( width: 40,child: Image.asset("assets/images/google.png")),
-              Text("Sign In with Google" , style: TextStyle(color: Colors.white),),
+              Text("Sign In with Google" , style: TextStyle(color: Colors.black),),
             ],)
       ),
     );
