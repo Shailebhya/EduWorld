@@ -86,19 +86,12 @@ class _getInfoTState extends State<getInfoT> {
                 )
               ],
             ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text("Age: \n"
-                    "Location: \n"
-                    "Gender: \n", style: TextStyle(color: Colors.black, fontSize: 20)),
-              ),
-            ),
             Expanded(
               child: ListView(
                 children: [
+                  buildkey("Age"),
+                  buildkey("Location"),
+                  buildkey("Gender"),
                   buildkey("About me"),
                   buildkey("Education"),
                   buildkey("Mode of tutoring"),
