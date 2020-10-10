@@ -8,8 +8,11 @@ class SubjectsPage extends StatefulWidget {
 }
 
 class _SubjectsPageState extends State<SubjectsPage> {
+  double width , height;
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Material(
         child: Container(
@@ -38,13 +41,13 @@ class _SubjectsPageState extends State<SubjectsPage> {
                       ),
                       children: <Widget>[
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Center(
                               child: Column(
                                 children: <Widget>[
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 150,
                                     child: Card(
                                       child: Padding(
@@ -70,7 +73,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 200,
                                     child: Card(
                                       child: Padding(
@@ -104,7 +107,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 200,
                                     child: Card(
                                       child: Padding(
@@ -130,7 +133,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 150,
                                     child: Card(
                                       child: Padding(
@@ -175,7 +178,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                       ),
                       children: <Widget>[
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Center(
                               child: Column(
@@ -207,7 +210,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 200,
                                     child: Card(
                                       child: Padding(
@@ -233,7 +236,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 150,
                                     child: Card(
                                       child: Padding(
@@ -259,7 +262,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 200,
                                     child: Card(
                                       child: Padding(
@@ -292,7 +295,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                               child: Column(
                                 children: <Widget>[
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 200,
                                     child: Card(
                                       child: Padding(
@@ -318,7 +321,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 150,
                                     child: Card(
                                       child: Padding(
@@ -344,7 +347,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 200,
                                     child: Card(
                                       child: Padding(
@@ -370,7 +373,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
                                     ),
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: width * 0.4, // here
                                     height: 150,
                                     child: Card(
                                       child: Padding(
