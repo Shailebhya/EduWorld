@@ -15,14 +15,13 @@ class _getInfoState extends State<getInfo> {
     googleSignIn.signOut();
     Navigator.pop(context);
   }
-
-  Card buildkey(String t)
+  Card buildkey(String t,[String a])
   {
     return Card(
       color: Colors.blue[900],
       child: ListTile(
         dense:true,
-        title: Text("$t: ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        title: Text("$t:$a ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
       ),
     );
   }
@@ -104,12 +103,12 @@ class _getInfoState extends State<getInfo> {
             Expanded(
               child: ListView(
                 children: [
-                  buildkey("About me"),
+                  buildkey("about Me",currentUser.bio),
                   buildkey("Grade"),
                   buildkey("Preferred mode of tutoring"),
                   buildkey("Need help in subjects"),
                   buildkey("Timings"),
-                  buildkey("Email ID"),
+                  buildkey("email",currentUser.email),
                   buildkey("Ph number"),
                 ],
               ),
