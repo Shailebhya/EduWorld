@@ -134,7 +134,7 @@ checkCategoryPresent()async{
                    margin: EdgeInsets.symmetric(
                        vertical: height * 0.02, horizontal: width * 0.05),
                    child: Text(
-                     'Edutech company which aims to provied perfect solution to all the teachers in need and help student to find a mentor easily.',
+                     'Edutech company which aims to provided perfect solution to all the teachers in need and help student to find a mentor easily.',
                      style: TextStyle(
                        color: Colors.grey[500],
                        fontFamily: 'OpenSans',
@@ -169,7 +169,7 @@ checkCategoryPresent()async{
                  ),
                  _buildButton("Student"),
                  RaisedButton(
-                   child: Text("logOUT"),
+                   child: Text("Log OUT"),
                    onPressed: logout,
                  )
                ],

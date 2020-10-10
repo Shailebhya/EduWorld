@@ -10,13 +10,13 @@ class getInfoT extends StatefulWidget {
 
 class _getInfoTState extends State<getInfoT> {
 
-  Card buildkey(String t,[String a])
+  Card buildkey(String t,[String c])
   {
     return Card(
       color: Colors.blue[900],
       child: ListTile(
         dense:true,
-        title: Text("$t:$a ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        title: Text("$t: $c",  style: TextStyle(color: Colors.white70, fontSize: 20)),
       ),
     );
   }
@@ -76,7 +76,7 @@ class _getInfoTState extends State<getInfoT> {
                     child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Text(currentUser.displayName,
+                          child: Text("Name",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,
@@ -86,26 +86,19 @@ class _getInfoTState extends State<getInfoT> {
                 )
               ],
             ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text("Age: \n"
-                    "Location: \n"
-                    "Gender: \n", style: TextStyle(color: Colors.black, fontSize: 20)),
-              ),
-            ),
             Expanded(
               child: ListView(
                 children: [
-                  buildkey("About Me",currentUser.bio),
+                  buildkey("Age"),
+                  buildkey("Location"),
+                  buildkey("Gender"),
+                  buildkey("About me",currentUser.bio),
                   buildkey("Education"),
                   buildkey("Mode of tutoring"),
                   buildkey("Price"),
                   buildkey("Rating/Subject Knowledge"),
                   buildkey("Timings"),
-                  buildkey("email",currentUser.email),
+                  buildkey("Email ID",currentUser.email),
                   buildkey("Ph number"),
                 ],
               ),

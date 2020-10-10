@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttervit_app/userdetails/editteacher.dart';
-
 import '../home.dart';
 import 'edit_student.dart';
 
@@ -15,13 +13,14 @@ class _getInfoState extends State<getInfo> {
     googleSignIn.signOut();
     Navigator.pop(context);
   }
-  Card buildkey(String t,[String a])
+
+  Card buildkey(String t,[String c])
   {
     return Card(
       color: Colors.blue[900],
       child: ListTile(
         dense:true,
-        title: Text("$t:$a ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        title: Text("$t: $c",  style: TextStyle(color: Colors.white70, fontSize: 20)),
       ),
     );
   }
@@ -90,25 +89,18 @@ class _getInfoState extends State<getInfo> {
                 )
               ],
             ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text("Age: \n"
-                    "Location: \n"
-                    "Gender: \n", style: TextStyle(color: Colors.black, fontSize: 20)),
-              ),
-            ),
             Expanded(
               child: ListView(
                 children: [
-                  buildkey("about Me",currentUser.bio),
+                  buildkey("Age"),
+                  buildkey("Location"),
+                  buildkey("Gender"),
+                  buildkey("About me",currentUser.bio),
                   buildkey("Grade"),
                   buildkey("Preferred mode of tutoring"),
                   buildkey("Need help in subjects"),
                   buildkey("Timings"),
-                  buildkey("email",currentUser.email),
+                  buildkey("Email ID",currentUser.email),
                   buildkey("Ph number"),
                 ],
               ),
