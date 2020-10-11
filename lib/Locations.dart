@@ -10,6 +10,7 @@ class _placesState extends State<places> {
   Card buildkey(String t)
   {
     return Card(
+      elevation: 0.1,
       color: Colors.white70,
       child: ListTile(
         dense:true,

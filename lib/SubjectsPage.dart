@@ -18,7 +18,13 @@ class _SubjectsPageState extends State<SubjectsPage> {
     return SafeArea(
       child: Material(
         child: Container(
-          color: Colors.blue[300],
+        decoration: BoxDecoration(
+    gradient: LinearGradient(
+    colors: [Colors.green[400], Colors.blue[400]],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    ),
+        ),
           child: Scaffold(
             appBar: AppBar(
               elevation: 0,

@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/tinku%20last%20page/radio.dart';
-//import 'package:syncfusion_flutter_sliders/sliders.dart';
-
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 Stream<QuerySnapshot> snap ;
@@ -107,7 +105,13 @@ Widget NewBottomModel (context){
   RangeValues _currentRangeValuesForTime = const RangeValues(8, 12);
   return Scaffold(
     body: Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.green[400], Colors.blue[400]],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
       height: MediaQuery.of(context).size.width * 1.5,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -258,405 +262,415 @@ void bottomSheet(BuildContext context) {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        title: Text('Location',
-            style: TextStyle(
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.green[400], Colors.blue[400]],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 1,
+          title: Text('Location',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold)),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
                 color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              color: Colors.black,
-              icon: Icon(
-                Icons.filter_list,
-                size: 30,
+                icon: Icon(
+                  Icons.filter_list,
+                  size: 30,
+                ),
+                onPressed: () {
+                  // Bottom();
+                  bottomSheet(context);
+                },
               ),
-              onPressed: () {
-                // Bottom();
-                bottomSheet(context);
-              },
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              radius: 15.0,
-              child: Image.network(
-                  "https://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg",fit: BoxFit.contain),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                radius: 15.0,
+                child: Image.network(
+                    "https://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg",fit: BoxFit.contain),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+        body:StreamBuilder<QuerySnapshot>(
+          stream: usersRef.where('subjects' ,arrayContains: widget.type).snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasData) {
+              return buildList(snapshot);
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
+        // body: ListView(
+        //   children: <Widget>[
+        //     Row(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Align(
+        //           alignment: Alignment.topLeft,
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //             child: Image(
+        //               height: 100.0,
+        //               width: 100.0,
+        //               image: AssetImage('assets/Pali_Lucknow.jpg'),
+        //               fit: BoxFit.cover,
+        //             ),
+        //           ),
+        //         ),
+        //         Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //                 child: Text(
+        //                   'Learn Kathak Online',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   '(Beginners)',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   'Guru Pali Chandra',
+        //                   style: TextStyle(color: Colors.grey, fontSize: 18),
+        //                 )),
+        //             Row(
+        //               children: [
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(left: 10.0),
+        //                   child: Icon(
+        //                     Icons.star,
+        //                     color: Colors.yellow,
+        //                   ),
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(Icons.star, color: Colors.grey)
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       ],
+        //     ),
+        //     Row(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Align(
+        //           alignment: Alignment.topLeft,
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //             child: Image(
+        //               height: 100.0,
+        //               width: 100.0,
+        //               image: AssetImage('assets/Pali_Lucknow.jpg'),
+        //               fit: BoxFit.cover,
+        //             ),
+        //           ),
+        //         ),
+        //         Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //                 child: Text(
+        //                   'Learn Kathak Online',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   '(Beginners)',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   'Guru Pali Chandra',
+        //                   style: TextStyle(color: Colors.grey, fontSize: 18),
+        //                 )),
+        //             Row(
+        //               children: [
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(left: 10.0),
+        //                   child: Icon(
+        //                     Icons.star,
+        //                     color: Colors.yellow,
+        //                   ),
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(Icons.star, color: Colors.grey)
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       ],
+        //     ),
+        //     Row(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Align(
+        //           alignment: Alignment.topLeft,
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //             child: Image(
+        //               height: 100.0,
+        //               width: 100.0,
+        //               image: AssetImage('assets/Pali_Lucknow.jpg'),
+        //               fit: BoxFit.cover,
+        //             ),
+        //           ),
+        //         ),
+        //         Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //                 child: Text(
+        //                   'Learn Kathak Online',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   '(Beginners)',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   'Guru Pali Chandra',
+        //                   style: TextStyle(color: Colors.grey, fontSize: 18),
+        //                 )),
+        //             Row(
+        //               children: [
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(left: 10.0),
+        //                   child: Icon(
+        //                     Icons.star,
+        //                     color: Colors.yellow,
+        //                   ),
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(Icons.star, color: Colors.grey)
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       ],
+        //     ),
+        //     Row(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Align(
+        //           alignment: Alignment.topLeft,
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //             child: Image(
+        //               height: 100.0,
+        //               width: 100.0,
+        //               image: AssetImage('assets/Pali_Lucknow.jpg'),
+        //               fit: BoxFit.cover,
+        //             ),
+        //           ),
+        //         ),
+        //         Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //                 child: Text(
+        //                   'Learn Kathak Online',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   '(Beginners)',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   'Guru Pali Chandra',
+        //                   style: TextStyle(color: Colors.grey, fontSize: 18),
+        //                 )),
+        //             Row(
+        //               children: [
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(left: 10.0),
+        //                   child: Icon(
+        //                     Icons.star,
+        //                     color: Colors.yellow,
+        //                   ),
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(Icons.star, color: Colors.grey)
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       ],
+        //     ),
+        //     Row(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Align(
+        //           alignment: Alignment.topLeft,
+        //           child: Padding(
+        //             padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //             child: Image(
+        //               height: 100.0,
+        //               width: 100.0,
+        //               image: AssetImage('assets/Pali_Lucknow.jpg'),
+        //               fit: BoxFit.cover,
+        //             ),
+        //           ),
+        //         ),
+        //         Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
+        //                 child: Text(
+        //                   'Learn Kathak Online',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   '(Beginners)',
+        //                   style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 18),
+        //                 )),
+        //             Padding(
+        //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
+        //                 child: Text(
+        //                   'Guru Pali Chandra',
+        //                   style: TextStyle(color: Colors.grey, fontSize: 18),
+        //                 )),
+        //             Row(
+        //               children: [
+        //                 Padding(
+        //                   padding: const EdgeInsets.only(left: 10.0),
+        //                   child: Icon(
+        //                     Icons.star,
+        //                     color: Colors.yellow,
+        //                   ),
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(
+        //                   Icons.star,
+        //                   color: Colors.yellow,
+        //                 ),
+        //                 Icon(Icons.star, color: Colors.grey)
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       ],
+        //     ),
+        //   ],
+        // ),
       ),
-      body:StreamBuilder<QuerySnapshot>(
-        stream: usersRef.where('subjects' ,arrayContains: widget.type).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasData) {
-            return buildList(snapshot);
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          return Center(child: CircularProgressIndicator());
-        },
-      ),
-      // body: ListView(
-      //   children: <Widget>[
-      //     Row(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.topLeft,
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //             child: Image(
-      //               height: 100.0,
-      //               width: 100.0,
-      //               image: AssetImage('assets/Pali_Lucknow.jpg'),
-      //               fit: BoxFit.cover,
-      //             ),
-      //           ),
-      //         ),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //                 child: Text(
-      //                   'Learn Kathak Online',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   '(Beginners)',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   'Guru Pali Chandra',
-      //                   style: TextStyle(color: Colors.grey, fontSize: 18),
-      //                 )),
-      //             Row(
-      //               children: [
-      //                 Padding(
-      //                   padding: const EdgeInsets.only(left: 10.0),
-      //                   child: Icon(
-      //                     Icons.star,
-      //                     color: Colors.yellow,
-      //                   ),
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(Icons.star, color: Colors.grey)
-      //               ],
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     Row(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.topLeft,
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //             child: Image(
-      //               height: 100.0,
-      //               width: 100.0,
-      //               image: AssetImage('assets/Pali_Lucknow.jpg'),
-      //               fit: BoxFit.cover,
-      //             ),
-      //           ),
-      //         ),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //                 child: Text(
-      //                   'Learn Kathak Online',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   '(Beginners)',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   'Guru Pali Chandra',
-      //                   style: TextStyle(color: Colors.grey, fontSize: 18),
-      //                 )),
-      //             Row(
-      //               children: [
-      //                 Padding(
-      //                   padding: const EdgeInsets.only(left: 10.0),
-      //                   child: Icon(
-      //                     Icons.star,
-      //                     color: Colors.yellow,
-      //                   ),
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(Icons.star, color: Colors.grey)
-      //               ],
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     Row(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.topLeft,
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //             child: Image(
-      //               height: 100.0,
-      //               width: 100.0,
-      //               image: AssetImage('assets/Pali_Lucknow.jpg'),
-      //               fit: BoxFit.cover,
-      //             ),
-      //           ),
-      //         ),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //                 child: Text(
-      //                   'Learn Kathak Online',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   '(Beginners)',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   'Guru Pali Chandra',
-      //                   style: TextStyle(color: Colors.grey, fontSize: 18),
-      //                 )),
-      //             Row(
-      //               children: [
-      //                 Padding(
-      //                   padding: const EdgeInsets.only(left: 10.0),
-      //                   child: Icon(
-      //                     Icons.star,
-      //                     color: Colors.yellow,
-      //                   ),
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(Icons.star, color: Colors.grey)
-      //               ],
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     Row(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.topLeft,
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //             child: Image(
-      //               height: 100.0,
-      //               width: 100.0,
-      //               image: AssetImage('assets/Pali_Lucknow.jpg'),
-      //               fit: BoxFit.cover,
-      //             ),
-      //           ),
-      //         ),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //                 child: Text(
-      //                   'Learn Kathak Online',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   '(Beginners)',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   'Guru Pali Chandra',
-      //                   style: TextStyle(color: Colors.grey, fontSize: 18),
-      //                 )),
-      //             Row(
-      //               children: [
-      //                 Padding(
-      //                   padding: const EdgeInsets.only(left: 10.0),
-      //                   child: Icon(
-      //                     Icons.star,
-      //                     color: Colors.yellow,
-      //                   ),
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(Icons.star, color: Colors.grey)
-      //               ],
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     Row(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.topLeft,
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //             child: Image(
-      //               height: 100.0,
-      //               width: 100.0,
-      //               image: AssetImage('assets/Pali_Lucknow.jpg'),
-      //               fit: BoxFit.cover,
-      //             ),
-      //           ),
-      //         ),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 30),
-      //                 child: Text(
-      //                   'Learn Kathak Online',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   '(Beginners)',
-      //                   style: TextStyle(
-      //                       color: Colors.black,
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 18),
-      //                 )),
-      //             Padding(
-      //                 padding: const EdgeInsets.only(left: 10.0, top: 5),
-      //                 child: Text(
-      //                   'Guru Pali Chandra',
-      //                   style: TextStyle(color: Colors.grey, fontSize: 18),
-      //                 )),
-      //             Row(
-      //               children: [
-      //                 Padding(
-      //                   padding: const EdgeInsets.only(left: 10.0),
-      //                   child: Icon(
-      //                     Icons.star,
-      //                     color: Colors.yellow,
-      //                   ),
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(
-      //                   Icons.star,
-      //                   color: Colors.yellow,
-      //                 ),
-      //                 Icon(Icons.star, color: Colors.grey)
-      //               ],
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
