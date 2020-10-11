@@ -14,7 +14,6 @@ class _addScreenSState extends State<addScreenS> {
     Map<String, bool> numbers = {
       'Online' : false,
       'HomeTutor' : false,
-
     };
 
     var holder_1 = [];
@@ -225,67 +224,81 @@ class _addScreenSState extends State<addScreenS> {
     super.initState();
   }
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Edit your details:', style: TextStyle( color: Colors.black),),
-        backgroundColor: Colors.amber[200],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.blue[400], Colors.green[400]],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          stops: [0.3, 0.7],
+        ),
       ),
-      backgroundColor: Colors.orange[200],
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.orange[300],
-                        borderRadius: BorderRadius.all(Radius.circular(35.0))),
-                    height: 170,
-                    width: 150,
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 150,
-                      child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text("Name",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 25,
-                                )),
-                          )),
+      child: Scaffold(
+        appBar: AppBar(title: Text('Edit your details:', style: TextStyle( color: Colors.black),),
+          backgroundColor: Colors.transparent,
+        ),
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.blue[400], Colors.green[400]],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            stops: [0.3, 0.7],
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(35.0))),
+                      height: 170,
+                      width: 150,
                     ),
-                  )
-                ],
-              ),
-
-
-              buildkey("About me",aboutMe),
-              buildkey("Age(eg: 12)",age),
-              buildkey("Location"),
-              buildkey("Gender(eg:Male/Female)",gender),
-              buildkey("Grade(5-12)(eg:7)",grade),
-              buildkey("Mode of tutoring(eg. Online/HomeBased)",mode),
-              buildkey("Need help in subjects"),
-              buildkey("Timings(eg:3-5 / 14-17)",timing),
-              Container(
-
-                width: 100,
-                child: RaisedButton(
-
-                    onPressed: submit,
-                    elevation: 5.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    color: Colors.white,
-                    child: Text("Save")
+                    Expanded(
+                      child: Container(
+                        height: 150,
+                        child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(currentUser.displayName,
+                                  style: TextStyle( fontFamily: "DancingScript",
+                                    color: Colors.black,
+                                    fontSize: 40,
+                                  )),
+                            )),
+                      ),
+                    )
+                  ],
                 ),
-              ),
 
-            ],
+
+                buildkey("About me",aboutMe),
+                buildkey("Age(eg: 12)",age),
+                buildkey("Location"),
+                buildkey("Gender(eg:Male/Female)",gender),
+                buildkey("Grade(5-12)(eg:7)",grade),
+                buildkey("Mode of tutoring(eg. Online/HomeBased)",mode),
+                buildkey("Need help in subjects"),
+                buildkey("Timings(eg:3-5 / 14-17)",timing),
+                Container(
+
+                  width: 100,
+                  child: RaisedButton(
+
+                      onPressed: submit,
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      color: Colors.white,
+                      child: Text("Save")
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -293,13 +306,12 @@ class _addScreenSState extends State<addScreenS> {
   }
   Card buildkey(String t,[TextEditingController controller]) {
     return Card(
-      color: Colors.blue[900],
+      color: Colors.white70,
       child: ListTile(
         dense: true,
-        title: Text("$t: ",  style: TextStyle(color: Colors.white70, fontSize: 20)),
+        title: Text("$t: ",  style: TextStyle(color: Colors.black, fontSize: 20)),
         // TextField instead of text to take in values
         // controller: myController,
-
       ),
     );
   }

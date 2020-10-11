@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/LanguagesPage.dart';
-import 'package:fluttervit_app/Locations.dart';
 import 'package:fluttervit_app/SubjectsPage.dart';
 import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
@@ -72,8 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: <Widget>[
             GestureDetector(
               child: IconButton(
-                  icon: CircleAvatar(backgroundImage: NetworkImage(currentUser.photoUrl),
-                  radius: 30),
+                iconSize: 50,
+                  icon: CircleAvatar(
+                   child: ClipOval(
+                    child: Image.network(currentUser.photoUrl),
+                  ),),
                   onPressed: () {
                     checkCategoryPresent();
                     if (hasCat == 0) {
@@ -88,11 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         backgroundColor: Colors.transparent,
-        body: Center(
-          child: SingleChildScrollView(
+        body:  SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+
+                SizedBox(height: 30,),
                 Container(
                   margin: EdgeInsets.symmetric(
                     horizontal: 20,
@@ -147,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text(
                                       ("Subjects"),
                                       style: TextStyle(
-                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                          fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
@@ -203,19 +206,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Spacer(),
-                                GestureDetector(
-                                  onTap: ()=> Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => places())),
-                                  child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                    child: Text(
-                                      ("Location"),
-                                      style: TextStyle(
-                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
-                                    ),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(
+                                    ("Location"),
+                                    style: TextStyle(
+                                        fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Spacer(),
@@ -281,7 +278,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text(
                                       ("Language"),
                                       style: TextStyle(
-                                          fontSize: 30, fontFamily: ("Lobster"), color: Colors.black),
+                                          fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
@@ -294,11 +291,76 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+                // Container(
+                //   margin: EdgeInsets.symmetric(
+                //     horizontal: 20,
+                //     vertical: 5,
+                //   ),
+                //   height: 125,
+                //   child: InkWell(
+                //     onTap: null,
+                //     child: Stack(
+                //       alignment: Alignment.bottomCenter,
+                //       children: <Widget>[
+                //
+                //         Container(
+                //           height: 90,
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(10),
+                //             color: Color(0xFF727CAB),
+                //
+                //           ),
+                //         ),
+                //         Positioned(
+                //           top: 0,
+                //           left: 0,
+                //           child: Hero(
+                //             tag: 'd',
+                //             child: Container(
+                //               padding: EdgeInsets.symmetric(horizontal: 20),
+                //
+                //               child: Image.asset("assets/images/teacher.png",
+                //                 height: 80,
+                //                 width: 80,
+                //
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //         Positioned(
+                //           bottom: 0,
+                //           right: 0,
+                //           child: SizedBox(
+                //             height: 100,
+                //             width: width - 200,
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: <Widget>[
+                //                 Spacer(),
+                //                 Padding(
+                //                   padding: const EdgeInsets.symmetric(
+                //                       horizontal: 20),
+                //                   child: Text(
+                //                     ("Mode Of Teaching"), style: TextStyle(fontSize: 22 , color: Color(0xFFE5E7F3)),
+                //
+                //                   ),
+                //                 ),
+                //
+                //                 Spacer(),
+                //
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
         ),
-      ),
+      
     );
   }
 }

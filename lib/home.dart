@@ -107,82 +107,99 @@ checkCategoryPresent()async{
     checkCategoryPresent();
    if(hasCat==false){
      //Home page
-     return Scaffold(
-       key: _scaffoldKey,
-       backgroundColor: Colors.orange[200],
-       body: SingleChildScrollView(
-         child: Center(
-           child: Expanded(
-             child: Column(
-               children: [
-                 Container(
-                   margin: EdgeInsets.only(
-                       top: height * 0.1, bottom: height * 0.05),
-                   child: Image.asset("assets/images/logo.png"),
-                   height: height * 0.20,
-                 ),
-                 Container(
-                   child: Text(
-                     'About Us:',
-                     style: TextStyle(
-                       color: Colors.black,
-                       fontFamily: ('OpenSans'),
-                       fontSize: 35.0,
-                       fontWeight: FontWeight.bold,
+     return Container(
+       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.blue[400], Colors.green[400]],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+       child: Scaffold(
+         key: _scaffoldKey,
+         backgroundColor: Colors.transparent,
+         body: SingleChildScrollView(
+           child: Center(
+             child: Expanded(
+               child: Column(
+                 children: [
+                   Container(
+                     margin: EdgeInsets.only(
+                         top: height * 0.1, bottom: height * 0.05),
+                     child: Image.asset("assets/images/logo.png"),
+                     height: height * 0.20,
+                   ),
+                   Container(
+                     child: Text(
+                       'About Us:',
+                       style: TextStyle(
+                         color: Colors.black,
+                         fontFamily: ('OpenSans'),
+                         fontSize: 35.0,
+                         fontWeight: FontWeight.bold,
+                       ),
                      ),
                    ),
-                 ),
-                 Container(
-                   margin: EdgeInsets.symmetric(
-                       vertical: height * 0.02, horizontal: width * 0.05),
-                   child: Text(
-                     'We aim to provided the perfect solution to all the teachers and students on the lookout for their right educational match and help them connect together to build a brighter future for the world! ',
-                     style: TextStyle(
-                       color: Colors.grey[500],
-                       fontFamily: 'OpenSans',
-                       fontSize: 20.0,
-                     ),
-                     textAlign: TextAlign.center,
-                   ),
-                 ),
-                 SizedBox(
-                   height: 30,
-                 ),
-                 Container(
-                   //margin: EdgeInsets.only(
-                   //    top: height * 0.2, bottom: height * 0.05),
-                   child: Text(
-                     'Continue As :',
-                     style: TextStyle(
-                       color: Colors.black,
-                       fontFamily: 'OpenSans',
-                       fontSize: 15.0,
+                   Container(
+                     margin: EdgeInsets.symmetric(
+                         vertical: height * 0.02, horizontal: width * 0.05),
+                     child: Text(
+                       'We aim to provided the perfect solution to all the teachers and students on the lookout for their right educational match and help them connect together to build a brighter future for the world! ',
+                       style: TextStyle(
+                         color: Colors.grey[900],
+                         fontFamily: 'OpenSans',
+                         fontSize: 20.0,
+                       ),
+                       textAlign: TextAlign.center,
                      ),
                    ),
-                 ),
-                 SizedBox(
-                   height: 10,
-                 ),
-                 _buildButton("Teacher"),
-                 SizedBox(
-                   height: 5,
-                 ),
-                 _buildButton("Student"),
-                 RaisedButton(
-                   child: Text("LOG OUT"),
-                   onPressed: logout,
-                 )
-               ],
+                   SizedBox(
+                     height: 15,
+                   ),
+                   Container(
+                     //margin: EdgeInsets.only(
+                     //    top: height * 0.2, bottom: height * 0.05),
+                     child: Text(
+                       'Continue As :',
+                       style: TextStyle(
+                         color: Colors.black,
+                         fontFamily: 'OpenSans',
+                         fontSize: 15.0,
+                       ),
+                     ),
+                   ),
+                   SizedBox(
+                     height: 10,
+                   ),
+                   _buildButton("Teacher"),
+                   SizedBox(
+                     height: 5,
+                   ),
+                   _buildButton("Student"),
+                   SizedBox(height: 5,),
+                   Text("(This cant be changed later)" , style: TextStyle(color: Colors.black54),),
+                   RaisedButton(
+                     child: Text("LOG OUT" , style: TextStyle(color: Colors.white),),
+                     onPressed: logout,
+                     elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        color: Colors.black.withOpacity(0.9),
+                   )
+                 ],
+               ),
              ),
            ),
-         ),
-       ));}
+         )),
+     );}
    else return MyHomePage();
   }
 
   Widget _buildButton(String intro)
   {
     return Container(
+      
       width: width * .4,
       child: RaisedButton(
         onPressed: ()
@@ -194,8 +211,8 @@ checkCategoryPresent()async{
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.orange[50],
-        child: Container(child: Text("$intro" , style: TextStyle(color: Colors.white ,fontSize: 18 ),)),
+        color: Colors.white.withOpacity(0.5),
+        child: Container(child: Text("$intro" , style: TextStyle(color: Colors.black ,fontSize: 18 ),)),
       ),
     );
   }

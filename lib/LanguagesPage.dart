@@ -14,7 +14,7 @@ class _LanguagesPageState extends State<LanguagesPage> {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.orange, Colors.red],
+              colors: [Colors.blue[400], Colors.green[400]],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               stops: [0.3, 0.7],
@@ -47,26 +47,15 @@ class _LanguagesPageState extends State<LanguagesPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
-                            color: Colors.transparent,
+                            color: Colors.white60,
                             elevation: 10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                  colors: [Colors.blue[300], Colors.pink[300]],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: ListTile(
-                                onTap: () {},
-                                title: Text(
-                                  "English",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.3,
-                                  ),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                "English",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: -0.3,
                                 ),
                               ),
                             ),
@@ -75,26 +64,15 @@ class _LanguagesPageState extends State<LanguagesPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
-                            color: Colors.transparent,
+                            color: Colors.white60,
                             elevation: 10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                  colors: [Colors.blue[300], Colors.purple[300]],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: ListTile(
-                                onTap: () {},
-                                title: Text(
-                                  "Hindi",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.3,
-                                  ),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                "Hindi",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: -0.3,
                                 ),
                               ),
                             ),
@@ -103,26 +81,15 @@ class _LanguagesPageState extends State<LanguagesPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
-                            color: Colors.transparent,
+                            color: Colors.white60,
                             elevation: 10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                  colors: [Colors.blue[300], Colors.purple[300]],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: ListTile(
-                                onTap: () {},
-                                title: Text(
-                                  "Spanish",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.3,
-                                  ),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                "Spanish",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: -0.3,
                                 ),
                               ),
                             ),
@@ -131,26 +98,15 @@ class _LanguagesPageState extends State<LanguagesPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
-                            color: Colors.transparent,
+                            color: Colors.white60,
                             elevation: 10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                  colors: [Colors.blue[300], Colors.purple[300]],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: ListTile(
-                                onTap: () {},
-                                title: Text(
-                                  "French",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.3,
-                                  ),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                "French",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: -0.3,
                                 ),
                               ),
                             ),
@@ -159,26 +115,15 @@ class _LanguagesPageState extends State<LanguagesPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
-                            color: Colors.transparent,
+                            color: Colors.white60,
                             elevation: 10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                  colors: [Colors.blue[300], Colors.purple[300]],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: ListTile(
-                                onTap: () {},
-                                title: Text(
-                                  "Sanskrit",
-                                  style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: -0.3,
-                                  ),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                "Sanskrit",
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: -0.3,
                                 ),
                               ),
                             ),
