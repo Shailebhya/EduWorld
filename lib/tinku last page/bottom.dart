@@ -112,7 +112,7 @@ Widget NewBottomModel (context){
           end: Alignment.bottomRight,
         ),
       ),
-      height: MediaQuery.of(context).size.width * 1.5,
+      height: MediaQuery.of(context).size.width*2,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ListView(
@@ -233,6 +233,7 @@ Widget NewBottomModel (context){
                 },
               ),
             ),
+            SizedBox(height: 30,),
             RaisedButton(child: Text("Confirm"),
               onPressed: (){
                 setState(() {
