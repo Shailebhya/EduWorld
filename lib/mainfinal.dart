@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttervit_app/LanguagesPage.dart';
+import 'package:fluttervit_app/Locations.dart';
 import 'package:fluttervit_app/SubjectsPage.dart';
 import 'package:fluttervit_app/home.dart';
 import 'package:fluttervit_app/userdetails/student.dart';
@@ -206,7 +207,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Spacer(),
-                                Padding(
+                                 GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => places())),
+                              child: Padding(
                                   padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                                   child: Text(
@@ -215,6 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontSize: 35, fontFamily: ("YanoneKaffeesatz"), color: Colors.black, fontWeight: FontWeight.bold),
                                   ),
                                 ),
+                                 ),
                                 Spacer(),
                               ],
                             ),
